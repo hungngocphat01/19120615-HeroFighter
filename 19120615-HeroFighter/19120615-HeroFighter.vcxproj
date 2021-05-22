@@ -142,11 +142,13 @@
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="HerowAttribute.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Team.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HerowAttribute.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Team.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
