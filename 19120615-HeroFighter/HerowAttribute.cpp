@@ -170,3 +170,110 @@ void HeroEarth::UpdtPntsBsdOnEnvrnmnt(attribute_t envrnmnt)
         this->HP *= DstrctvEnvHPFctr;
     }
 }
+
+/*************** KHU VỰC IMPLEMENT HÀM UpdtPntsInTeam ***************/
+
+void HeroMetal::UpdtPntsInTeam(Hero& tmmt)
+{
+    // Kim sinh thuỷ
+    if (tmmt.Attribute() == WATER) {
+        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Kim khắc mộc
+    else if (tmmt.Attribute() == WOOD) {
+        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    }
+
+    // Thổ sinh kim
+    if (tmmt.Attribute() == EARTH) {
+        this->UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Hoả khắc kim
+    else if (tmmt.Attribute() == FIRE) {
+        this->UpdtPntsWhnCnqrdByTmmt();
+    }
+}
+
+void HeroWater::UpdtPntsInTeam(Hero& tmmt)
+{
+    // Thuỷ sinh mộc
+    if (tmmt.Attribute() == WOOD) {
+        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Thuỷ khắc hoả
+    else if (tmmt.Attribute() == FIRE) {
+        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    }
+
+    // Kim sinh thuỷ
+    if (tmmt.Attribute() == METAL) {
+        this->UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Thổ khắc thuỷ
+    else if (tmmt.Attribute() == EARTH) {
+        this->UpdtPntsWhnCnqrdByTmmt();
+    }
+}
+
+void HeroWood::UpdtPntsInTeam(Hero& tmmt)
+{
+    // Mộc sinh hoả
+    if (tmmt.Attribute() == FIRE) {
+        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Mộc khắc thổ
+    else if (tmmt.Attribute() == EARTH) {
+        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    }
+
+    // thuỷ sinh Mộc
+    if (tmmt.Attribute() == WATER) {
+        this->UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Kim khắc Mộc
+    else if (tmmt.Attribute() == METAL) {
+        this->UpdtPntsWhnCnqrdByTmmt();
+    }
+}
+
+void HeroFire::UpdtPntsInTeam(Hero& tmmt)
+{
+    // Hoả sinh thổ
+    if (tmmt.Attribute() == EARTH) {
+        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Hoả khắc kim
+    else if (tmmt.Attribute() == METAL) {
+        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    }
+
+    // Mộc sinh hoả
+    if (tmmt.Attribute() == WOOD) {
+        this->UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Thuỷ khắc hoả
+    else if (tmmt.Attribute() == WATER) {
+        this->UpdtPntsWhnCnqrdByTmmt();
+    }
+}
+
+void HeroEarth::UpdtPntsInTeam(Hero& tmmt)
+{
+    // Thổ sinh kim
+    if (tmmt.Attribute() == METAL) {
+        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Thổ khắc thuỷ
+    else if (tmmt.Attribute() == WATER) {
+        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    }
+
+    // Hoả sinh thổ
+    if (tmmt.Attribute() == FIRE) {
+        this->UpdtPntsWhnGnrtdByTmmt();
+    }
+    // Mộc khắc thổ
+    else if (tmmt.Attribute() == WOOD) {
+        this->UpdtPntsWhnCnqrdByTmmt();
+    }
+}
