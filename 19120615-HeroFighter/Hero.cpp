@@ -11,14 +11,14 @@ constexpr float GnrtdByTmmtHPFctr = 1.15;
 
 Hero::Hero(string name, float hp, float atk, float def, float spd)
 {
-	Name = name;
-	HP = hp;
-	ATK = atk;
-	DEF = def;
-	SPD = spd;
+	sTen = name;
+	fMau = hp;
+	fCong = atk;
+	fThu = def;
+	fTocDo = spd;
 }
 
-result_t Hero::Fight(Hero& enemy)
+result_t Hero::batDauDanh(Hero& enemy)
 {
 	/*
 		- Ai có thời gian chờ = 0 được đánh trước.
@@ -30,62 +30,62 @@ result_t Hero::Fight(Hero& enemy)
 	*/
 
 	// Thực hiện đánh tới khi nào một trong 2 thua (máu <= 0)
-	while (this->HP * enemy.HP > 0 && FightTime > 0) {
+	while (this->fMau * enemy.fMau > 0 && THOIGIANTRANDAU > 0) {
 		// Ai có thời gian chờ = 0 được đánh trước
 		// Bằng nhau thì pick random
 		
-		if (this->WAIT == 0 && enemy.WAIT == 0) {
+		if (this->fWAIT == 0 && enemy.fWAIT == 0) {
 			int r = rand() % 2 + 1;
 			if (r == 1) {
-				this->Attack(enemy);
+				this->TanCong(enemy);
 			}
 			else {
-				enemy.Attack(*this);
+				enemy.TanCong(*this);
 			}
 		}
-		else if (this->WAIT == 0) {
-			this->Attack(enemy);
+		else if (this->fWAIT == 0) {
+			this->TanCong(enemy);
 		}
-		else if (enemy.WAIT == 0) {
-			enemy.Attack(*this);
+		else if (enemy.fWAIT == 0) {
+			enemy.TanCong(*this);
 		}
 
-		FightTime--;
+		THOIGIANTRANDAU--;
 	}
 
-	if (this->HP > 0 && enemy.HP > 0) {
-		return FOUL;
+	if (this->fMau > 0 && enemy.fMau > 0) {
+		return HOA;
 	}
-	else if (this->HP <= 0) {
-		return LOST;
+	else if (this->fMau <= 0) {
+		return THUA;
 	}
 	else {
-		return VICTORY;
+		return THANG;
 	}
 }
 
-void Hero::UpdtPntsForCnqrdOppnt(Hero& h1, Hero& h2)
+void Hero::capNhtThgSoKhiDoiPhBiKhac(Hero& h1, Hero& h2)
 {
-	h2.DEF *= CnqrdEnmyDEFFctr;
-	h1.ATK *= CnqrdEnmyMyATKFctr;
+	h2.fThu *= CnqrdEnmyDEFFctr;
+	h1.fCong *= CnqrdEnmyMyATKFctr;
 }
 
-void Hero::UpdtPntsWhnCnqrdByTmmt()
+void Hero::capNhtThgSoKhiBiDngDoiKhac()
 {
-	this->SPD *= CnqrdByTmmtSPDFctr;
+	this->fTocDo *= CnqrdByTmmtSPDFctr;
 }
 
-void Hero::UpdtPntsWhnGnrtdByTmmt()
+void Hero::capNhtThgSoKhiDcDngDoiSinh()
 {
-	this->HP *= GnrtdByTmmtHPFctr;
+	this->fMau *= GnrtdByTmmtHPFctr;
 }
 
-void Hero::Attack(Hero& enemy)
+void Hero::TanCong(Hero& enemy)
 {
-	enemy.HP -= (this->ATK - enemy.DEF);
-	this->WAIT = this->SPD;
+	enemy.fMau -= (this->fCong - enemy.fThu);
+	this->fWAIT = this->fTocDo;
 
-	if (enemy.WAIT > 0) {
-		enemy.WAIT--;
+	if (enemy.fWAIT > 0) {
+		enemy.fWAIT--;
 	}
 }

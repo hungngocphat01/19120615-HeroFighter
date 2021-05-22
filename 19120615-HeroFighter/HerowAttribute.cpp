@@ -1,99 +1,99 @@
 ﻿#include "HerowAttribute.h"
 
-/*************** KHU VỰC IMPLEMENT HÀM Fight ***************/
+/*************** KHU VỰC IMPLEMENT HÀM batDauDanh ***************/
 
-// Các hàm Fight được override này sẽ thực hiện việc trừ điểm 
+// Các hàm batDauDanh được override này sẽ thực hiện việc trừ điểm 
 // của đối phương nếu tương khắc sau đó sẽ gọi lại hàm đánh của lớp cha
 
-result_t HeroMetal::Fight(Hero& enemy)
+result_t HeroMetal::batDauDanh(Hero& doithu)
 {
     // Kim khắc mộc
-    if (enemy.Attribute() == WOOD) {
-        UpdtPntsForCnqrdOppnt(*this, enemy);
+    if (doithu.thuocTinh() == MOC) {
+        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
-    return Hero::Fight(enemy);
+    return Hero::batDauDanh(doithu);
 }
 
-result_t HeroWood::Fight(Hero& enemy)
+result_t HeroWood::batDauDanh(Hero& doithu)
 {
     // Mộc khắc thổ
-    if (enemy.Attribute() == EARTH) {
-        UpdtPntsForCnqrdOppnt(*this, enemy);
+    if (doithu.thuocTinh() == THO) {
+        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
-    return Hero::Fight(enemy);
+    return Hero::batDauDanh(doithu);
 }
 
-result_t HeroEarth::Fight(Hero& enemy)
+result_t HeroEarth::batDauDanh(Hero& doithu)
 {
     // Thổ khắc thuỷ
-    if (enemy.Attribute() == WATER) {
-        UpdtPntsForCnqrdOppnt(*this, enemy);
+    if (doithu.thuocTinh() == THUY) {
+        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
-    return Hero::Fight(enemy);
+    return Hero::batDauDanh(doithu);
 }
 
-result_t HeroWater::Fight(Hero& enemy)
+result_t HeroWater::batDauDanh(Hero& doithu)
 {
     // Thuỷ khắc hoả
-    if (enemy.Attribute() == FIRE) {
-        UpdtPntsForCnqrdOppnt(*this, enemy);
+    if (doithu.thuocTinh() == HOA) {
+        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
-    return Hero::Fight(enemy);
+    return Hero::batDauDanh(doithu);
 }   
 
-result_t HeroFire::Fight(Hero& enemy)
+result_t HeroFire::batDauDanh(Hero& doithu)
 {
     // Hoả khắc kim
-    if (enemy.Attribute() == METAL) {
-        UpdtPntsForCnqrdOppnt(*this, enemy);
+    if (doithu.thuocTinh() == KIM) {
+        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
-    return Hero::Fight(enemy);
+    return Hero::batDauDanh(doithu);
 }
 
-/*************** KHU VỰC IMPLEMENT HÀM CreateNewHero ***************/
+/*************** KHU VỰC IMPLEMENT HÀM TaoHeroMoi ***************/
 
-Hero* Hero::CreateNewHero(string inp) {
+Hero* Hero::taoHeroMoi(string inp) {
     vector<string> info = SplitString(inp, ';');
     if (info.size() != 6) {
         throw invalid_argument("Khong the tao hero do thieu hoac du tham so: " + inp);
     }
 
     Hero* h;
-    enum { NAME, ATTRIBUTE, HP, ATK, DEF, SPD };
+    enum { TEN, TTINH, MAU, CONG, THU, TDO };
 
     try 
     {
-        string name = info[NAME];
-        attribute_t attr = stoi(info[ATTRIBUTE]);
-        float hp = stof(info[HP]);
-        float atk = stof(info[ATK]);
-        float def = stof(info[DEF]);
-        float spd = stof(info[SPD]);
+        string name = info[TEN];
+        attribute_t ttinh = stoi(info[TTINH]);
+        float mau = stof(info[MAU]);
+        float cong = stof(info[CONG]);
+        float thu = stof(info[THU]);
+        float tdo = stof(info[TDO]);
 
-        switch (attr)
+        switch (ttinh)
         {
-        case METAL:
-            h = new HeroMetal(name, hp, atk, def, spd);
+        case KIM:
+            h = new HeroMetal(name, mau, cong, thu, tdo);
             break;
-        case WOOD:
-            h = new HeroWood(name, hp, atk, def, spd);
+        case MOC:
+            h = new HeroWood(name, mau, cong, thu, tdo);
             break;
-        case WATER:
-            h = new HeroWater(name, hp, atk, def, spd);
+        case THUY:
+            h = new HeroWater(name, mau, cong, thu, tdo);
             break;
-        case FIRE:
-            h = new HeroFire(name, hp, atk, def, spd);
+        case HOA:
+            h = new HeroFire(name, mau, cong, thu, tdo);
             break;
-        case EARTH:
-            h = new HeroEarth(name, hp, atk, def, spd);
+        case THO:
+            h = new HeroEarth(name, mau, cong, thu, tdo);
             break;
         default:
-            throw invalid_argument("Thuoc tinh khong hop le: " + attr);
+            throw invalid_argument("Thuoc tinh khong hop le: " + ttinh);
         }
         return h;
     }
@@ -103,177 +103,177 @@ Hero* Hero::CreateNewHero(string inp) {
     }
 }
 
-/*************** KHU VỰC IMPLEMENT HÀM UpdtPntsBsdOnEnvrnmnt ***************/
+/*************** KHU VỰC IMPLEMENT HÀM capNhtThgSoTheoMoiTrg ***************/
 
-// Hệ số tăng HP và giảm SPD nếu hợp môi trường
-constexpr float GnrtvEnvHPFctr = 1.05;
-constexpr float GnrtvEnvSPDFctr = 0.9;
-// Hệ số giảm HP nếu trái môi trường
-constexpr float DstrctvEnvHPFctr = 0.97;
+// Hệ số tăng máu và giảm tốc độ nếu hợp môi trường
+constexpr float HeSoMauSinhMtr = 1.05;
+constexpr float HeSoTdoSinhMtr = 0.9;
+// Hệ số giảm máu nếu trái môi trường
+constexpr float HeSoMauKhacMtr = 0.97;
 
-void HeroMetal::UpdtPntsBsdOnEnvrnmnt(attribute_t envrnmnt)
+void HeroMetal::capNhtThgSoTheoMoiTrg(attribute_t moitruong)
 {
     // Thổ sinh kim
-    if (envrnmnt == EARTH) {
-        this->HP *= GnrtvEnvHPFctr;
+    if (moitruong == THO) {
+        this->fMau *= HeSoMauSinhMtr;
     }
     // Hoả khắc kim
-    else if (envrnmnt == FIRE) {
-        this->HP *= DstrctvEnvHPFctr;
+    else if (moitruong == HOA) {
+        this->fMau *= HeSoMauKhacMtr;
     }
 }
 
-void HeroWater::UpdtPntsBsdOnEnvrnmnt(attribute_t envrnmnt)
+void HeroWater::capNhtThgSoTheoMoiTrg(attribute_t moitruong)
 {
     // Kim sinh thuỷ
-    if (envrnmnt == METAL) {
-        this->HP *= GnrtvEnvHPFctr;
+    if (moitruong == KIM) {
+        this->fMau *= HeSoMauSinhMtr;
     }
     // Thổ khắc thuỷ
-    else if (envrnmnt == EARTH) {
-        this->HP *= DstrctvEnvHPFctr;
+    else if (moitruong == THO) {
+        this->fMau *= HeSoMauKhacMtr;
     }
 }
 
-void HeroWood::UpdtPntsBsdOnEnvrnmnt(attribute_t envrnmnt)
+void HeroWood::capNhtThgSoTheoMoiTrg(attribute_t moitruong)
 {
     // Thuỷ sinh mộc
-    if (envrnmnt == WATER) {
-        this->HP *= GnrtvEnvHPFctr;
+    if (moitruong == THUY) {
+        this->fMau *= HeSoMauSinhMtr;
     }
     // Kim khắc mộc
-    else if (envrnmnt == METAL) {
-        this->HP *= DstrctvEnvHPFctr;
+    else if (moitruong == KIM) {
+        this->fMau *= HeSoMauKhacMtr;
     }
 }
 
-void HeroFire::UpdtPntsBsdOnEnvrnmnt(attribute_t envrnmnt)
+void HeroFire::capNhtThgSoTheoMoiTrg(attribute_t moitruong)
 {
     // Mộc sinh hoả
-    if (envrnmnt == WOOD) {
-        this->HP *= GnrtvEnvHPFctr;
+    if (moitruong == MOC) {
+        this->fMau *= HeSoMauSinhMtr;
     }
     // Thuỷ khắc hoả
-    else if (envrnmnt == WATER) {
-        this->HP *= DstrctvEnvHPFctr;
+    else if (moitruong == THUY) {
+        this->fMau *= HeSoMauKhacMtr;
     }
 }
 
-void HeroEarth::UpdtPntsBsdOnEnvrnmnt(attribute_t envrnmnt)
+void HeroEarth::capNhtThgSoTheoMoiTrg(attribute_t moitruong)
 {
     // Hoả sinh thổ
-    if (envrnmnt == FIRE) {
-        this->HP *= GnrtvEnvHPFctr;
+    if (moitruong == HOA) {
+        this->fMau *= HeSoMauSinhMtr;
     }
     // Mộc khắc thổ
-    else if (envrnmnt == WOOD) {
-        this->HP *= DstrctvEnvHPFctr;
+    else if (moitruong == MOC) {
+        this->fMau *= HeSoMauKhacMtr;
     }
 }
 
-/*************** KHU VỰC IMPLEMENT HÀM UpdtPntsInTeam ***************/
+/*************** KHU VỰC IMPLEMENT HÀM capNhtThgSoTrongTeam ***************/
 
-void HeroMetal::UpdtPntsInTeam(Hero& tmmt)
+void HeroMetal::capNhtThgSoTrongTeam(Hero& dgdoi)
 {
     // Kim sinh thuỷ
-    if (tmmt.Attribute() == WATER) {
-        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == THUY) {
+        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
     }
     // Kim khắc mộc
-    else if (tmmt.Attribute() == WOOD) {
-        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == MOC) {
+        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // Thổ sinh kim
-    if (tmmt.Attribute() == EARTH) {
-        this->UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == THO) {
+        this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Hoả khắc kim
-    else if (tmmt.Attribute() == FIRE) {
-        this->UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == HOA) {
+        this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
 
-void HeroWater::UpdtPntsInTeam(Hero& tmmt)
+void HeroWater::capNhtThgSoTrongTeam(Hero& dgdoi)
 {
     // Thuỷ sinh mộc
-    if (tmmt.Attribute() == WOOD) {
-        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == MOC) {
+        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
     }
     // Thuỷ khắc hoả
-    else if (tmmt.Attribute() == FIRE) {
-        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == HOA) {
+        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // Kim sinh thuỷ
-    if (tmmt.Attribute() == METAL) {
-        this->UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == KIM) {
+        this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Thổ khắc thuỷ
-    else if (tmmt.Attribute() == EARTH) {
-        this->UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == THO) {
+        this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
 
-void HeroWood::UpdtPntsInTeam(Hero& tmmt)
+void HeroWood::capNhtThgSoTrongTeam(Hero& dgdoi)
 {
     // Mộc sinh hoả
-    if (tmmt.Attribute() == FIRE) {
-        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == HOA) {
+        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
     }
     // Mộc khắc thổ
-    else if (tmmt.Attribute() == EARTH) {
-        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == THO) {
+        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // thuỷ sinh Mộc
-    if (tmmt.Attribute() == WATER) {
-        this->UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == THUY) {
+        this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Kim khắc Mộc
-    else if (tmmt.Attribute() == METAL) {
-        this->UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == KIM) {
+        this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
 
-void HeroFire::UpdtPntsInTeam(Hero& tmmt)
+void HeroFire::capNhtThgSoTrongTeam(Hero& dgdoi)
 {
     // Hoả sinh thổ
-    if (tmmt.Attribute() == EARTH) {
-        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == THO) {
+        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
     }
     // Hoả khắc kim
-    else if (tmmt.Attribute() == METAL) {
-        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == KIM) {
+        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // Mộc sinh hoả
-    if (tmmt.Attribute() == WOOD) {
-        this->UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == MOC) {
+        this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Thuỷ khắc hoả
-    else if (tmmt.Attribute() == WATER) {
-        this->UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == THUY) {
+        this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
 
-void HeroEarth::UpdtPntsInTeam(Hero& tmmt)
+void HeroEarth::capNhtThgSoTrongTeam(Hero& dgdoi)
 {
     // Thổ sinh kim
-    if (tmmt.Attribute() == METAL) {
-        tmmt.UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == KIM) {
+        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
     }
     // Thổ khắc thuỷ
-    else if (tmmt.Attribute() == WATER) {
-        tmmt.UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == THUY) {
+        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // Hoả sinh thổ
-    if (tmmt.Attribute() == FIRE) {
-        this->UpdtPntsWhnGnrtdByTmmt();
+    if (dgdoi.thuocTinh() == HOA) {
+        this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Mộc khắc thổ
-    else if (tmmt.Attribute() == WOOD) {
-        this->UpdtPntsWhnCnqrdByTmmt();
+    else if (dgdoi.thuocTinh() == MOC) {
+        this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }

@@ -1,18 +1,18 @@
 ﻿#include "Team.h"
 
-void Team::InsertNewMember(string data)
+void Team::themThanhVienMoi(string data)
 {
-	Hero* newhero = Hero::CreateNewHero(data);
+	Hero* newhero = Hero::taoHeroMoi(data);
 	// Cập nhật lại điểm số cho từng cặp hero mỗi khi thêm vào
-	for (Hero*& member : members) {
-		newhero->UpdtPntsInTeam(*member);
+	for (Hero*& member : arrThanhVien) {
+		newhero->capNhtThgSoTrongTeam(*member);
 	}
-	members.push_back(newhero);
+	arrThanhVien.push_back(newhero);
 }
 
-void Team::UpdateEnvironment(attribute_t env)
+void Team::capNhatMoiTruong(attribute_t mtr)
 {
-	for (Hero*& member : members) {
-		member->UpdtPntsBsdOnEnvrnmnt(env);
+	for (Hero*& member : arrThanhVien) {
+		member->capNhtThgSoTheoMoiTrg(mtr);
 	}
 }

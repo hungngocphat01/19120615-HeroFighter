@@ -5,13 +5,13 @@
 class Team
 {
 private:
-	vector<Hero*> members;
+	vector<Hero*> arrThanhVien;
 public:
 	// Chèn một member mới vào team
 	// Mỗi khi chèn sẽ kiểm tra và trừ/tăng điểm các thành viên còn lại tương ứng
-	void InsertNewMember(string);
+	void themThanhVienMoi(string);
 
 	// Cập nhật môi trường cho các thành viên team
-	void UpdateEnvironment(attribute_t);
+	void capNhatMoiTruong(attribute_t);
 };
 

@@ -6,7 +6,8 @@
 using namespace std;
 
 // Hàm cắt một chuỗi thành nhiều chuỗi con
-static vector<string> SplitString(string str, char dlmtr) {
+static vector<string> SplitString(string str, char dlmtr) 
+{
 	stringstream ss;
 	vector<string> result;
 	ss << str;

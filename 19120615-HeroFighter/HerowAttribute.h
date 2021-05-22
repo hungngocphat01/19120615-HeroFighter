@@ -5,50 +5,55 @@
 #include <exception>
 #include <stdexcept>
 
-class HeroMetal : public Hero {
+class HeroMetal : public Hero 
+{
 public:
 	// Kế thừa tất cả constructor
 	using Hero::Hero;
 
-	virtual attribute_t Attribute() const override { return METAL; }
-	virtual result_t Fight(Hero&) override;
-	virtual void UpdtPntsBsdOnEnvrnmnt(attribute_t) override;
-	virtual void UpdtPntsInTeam(Hero&) override;
+	virtual attribute_t thuocTinh() const override { return KIM; }
+	virtual result_t batDauDanh(Hero&) override;
+	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	virtual void capNhtThgSoTrongTeam(Hero&) override;
 };
 
-class HeroWood : public Hero {
+class HeroWood : public Hero 
+{
 public:
 	using Hero::Hero;
-	virtual attribute_t Attribute() const override { return WOOD; }
-	virtual result_t Fight(Hero&) override;
-	virtual void UpdtPntsBsdOnEnvrnmnt(attribute_t) override;
-	virtual void UpdtPntsInTeam(Hero&) override;
+	virtual attribute_t thuocTinh() const override { return MOC; }
+	virtual result_t batDauDanh(Hero&) override;
+	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	virtual void capNhtThgSoTrongTeam(Hero&) override;
 };
 
-class HeroWater : public Hero {
+class HeroWater : public Hero 
+{
 public:
 	using Hero::Hero;
-	virtual attribute_t Attribute() const override { return WATER; }
-	virtual result_t Fight(Hero&) override;
-	virtual void UpdtPntsBsdOnEnvrnmnt(attribute_t) override;
-	virtual void UpdtPntsInTeam(Hero&) override;
+	virtual attribute_t thuocTinh() const override { return THUY; }
+	virtual result_t batDauDanh(Hero&) override;
+	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	virtual void capNhtThgSoTrongTeam(Hero&) override;
 };
 
-class HeroFire : public Hero {
+class HeroFire : public Hero 
+{
 public:
 	using Hero::Hero;
-	virtual attribute_t Attribute() const override { return FIRE; }
-	virtual result_t Fight(Hero&) override;
-	virtual void UpdtPntsBsdOnEnvrnmnt(attribute_t) override;
-	virtual void UpdtPntsInTeam(Hero&) override;
+	virtual attribute_t thuocTinh() const override { return HOA; }
+	virtual result_t batDauDanh(Hero&) override;
+	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	virtual void capNhtThgSoTrongTeam(Hero&) override;
 };
 
-class HeroEarth : public Hero {
+class HeroEarth : public Hero 
+{
 public:
 	using Hero::Hero;
-	virtual attribute_t Attribute() const override { return EARTH; }
-	virtual result_t Fight(Hero&) override;
-	virtual void UpdtPntsBsdOnEnvrnmnt(attribute_t) override;
-	virtual void UpdtPntsInTeam(Hero&) override;
+	virtual attribute_t thuocTinh() const override { return THO; }
+	virtual result_t batDauDanh(Hero&) override;
+	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	virtual void capNhtThgSoTrongTeam(Hero&) override;
 };
 
