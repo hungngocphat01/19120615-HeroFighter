@@ -4,15 +4,20 @@
 /*
  										ĐỒ ÁN CUỐI KỲ
  						THỰC HÀNH PHƯƠNG PHÁP LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG
-						     LỚP 19_2, HỌC KỲ 2 NĂM HỌC 2020 - 2021
+						     LỚP 19_2, HỌC KỲ 2 NĂM HỌC 2020 - 2021 
   
                                      1. THÔNG TIN CHUNG
 * Mô phỏng game HeroFighter trên console.
 * Sinh viên thực hiện: HÙNG NGỌC PHÁT -- 19120615.
 
-* Môi trường phát triển: Microsoft Visual Studio 2019, Microsoft Windows 10 64-bit 21H1.
+* Môi trường phát triển: Microsoft Visual Studio 2019, 
+                         Microsoft Windows 10 21H1.
 * Trình biên dịch: Microsoft Visual C++ Compiler (MSCV).
 * Chuẩn ngôn ngữ: MSVC C++14.
+
+* Ngày bắt đầu: 20/05/2021.
+* Ngày kết thúc: --
+* Hoàn tất debug: --
  
                                     2. VỀ QUY TẮC ĐẶT TÊN
 * Hầu hết các trường hợp em xin thuân thủ theo quy tắc mà thầy đã nêu trong file docx. 
@@ -26,7 +31,7 @@
 * Tất cả các hằng số (const) đều được viết HOA TOÀN BỘ, hoặc camelCase nhưng có thêm tiền tố "HeSo~".
 * Tất cả class sẽ được đặt tên dạng PascalCase (ViếtHoaCácChữCáiĐầu).
 * Tất cả các tên tham số hình thức sẽ được viết bằng toàn bộ chữ cái thường.
-* Các biến phát sinh bên trong hàm/phương thức sẽ được viết thường hoặc camel case tuỳ trường hợp.
+* Các biến phát sinh bên trong hàm/phương thức sẽ được viết thường hoặc camelCase tuỳ trường hợp.
 * Các phương thức/hàm sẽ được đặt tên dạng camelCase (chữĐầuViếtThường).
 * Các thuộc tính lớp cũng sẽ được đặt theo camelCase nhưng có thêm kiểu dữ liệu ở trước để phân biệt
   Một số ví dụ:
@@ -34,7 +39,9 @@
 	* int       iExample;
 	* char*     strAnotherExample; (or std::string)
 	* vector<T> arrYetAnotherExample;
-* Ngoài ra để có 1 tí syntax sugar thì em xin đặt thêm một số alias cho kiểu int bằng typedef. 
+* Các alias cho các kiểu có sẵn (để cho có thêm một tí xíuu syntax sugar) thì được viết bằng chữ cái viết
+  thường, kèm thêm hậu tố "_t"
+  Vd: attribute_t, result_t, vfuncptr_t, ...
 
 	                  3. CÁC MODULE/CLASS ĐƯỢC IMPLEMENT TRONG PROJECT NÀY
 * Ở đây em chỉ liệt kê và ghi vắn tắt công dụng của các module/class được nêu. Cụ thể hơn thì
@@ -54,14 +61,17 @@
 
 int main() 
 {
-	string tenUsr1;
-	cout << "Nhap ten user 1: ";
-	getline(cin, tenUsr1);
-
-	Menu mainmenu;
-	mainmenu.themEntryMoi("1. Xem log.", xemLog);
-	mainmenu.themEntryMoi("2. Bat dau tran dau.", batDauTranDau);
-	mainmenu.hienThi();
+	Menu mainmenu = Menu("Menu chinh");
+	mainmenu.customMenu([]() {
+		cout << "Nhap ten user 1: ";
+		getline(cin, glTeam1.strTenDoiChoi);
+	});
+	
+	mainmenu.themEntryMoi("Xem log", xemLog);
+	mainmenu.themEntryMoi("Bat dau tran dau", batDauTranDau);
+	mainmenu.hienThi([]() {
+		cout << "Xin chao, " << glTeam1.strTenDoiChoi << endl << endl;
+	});
 
 	return 0;
 }
