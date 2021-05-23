@@ -5,6 +5,11 @@
 #include <exception>
 #include <stdexcept>
 
+/*
+* File này định nghĩa các Hero cụ thể có thuộc tính (Hero with Attribute), kế thừa từ lớp cha Hero.
+* Vì số lượng hero là rất nhiều nên em xin bỏ hết vào một file cho tiện quản lý.
+*/
+
 class HeroMetal : public Hero 
 {
 public:

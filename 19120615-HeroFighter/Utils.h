@@ -3,10 +3,16 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <typeinfo>
 using namespace std;
 
+/*
+* File này định nghĩa các hàm tiện ích lẻ tẻ không thuộc 
+* một lĩnh vực cụ thể nào (nên em không nhét mấy hàm này vào chung 1 class)
+*/
+
 // Hàm cắt một chuỗi thành nhiều chuỗi con
-static vector<string> SplitString(string str, char dlmtr) 
+static vector<string> splitString(string str, char dlmtr) 
 {
 	stringstream ss;
 	vector<string> result;

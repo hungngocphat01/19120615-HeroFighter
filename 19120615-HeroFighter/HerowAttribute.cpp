@@ -1,5 +1,11 @@
 ﻿#include "HerowAttribute.h"
 
+/*
+* File này implement hàm cho các Hero cụ thể có thuộc tính (Hero with Attribute), 
+* kế thừa từ lớp cha Hero. Vì số lượng hero là rất nhiều nên em xin bỏ hết vào 
+* một file cho tiện quản lý.
+*/
+
 /*************** KHU VỰC IMPLEMENT HÀM batDauDanh ***************/
 
 // Các hàm batDauDanh được override này sẽ thực hiện việc trừ điểm 
@@ -58,7 +64,7 @@ result_t HeroFire::batDauDanh(Hero& doithu)
 /*************** KHU VỰC IMPLEMENT HÀM TaoHeroMoi ***************/
 
 Hero* Hero::taoHeroMoi(string inp) {
-    vector<string> info = SplitString(inp, ';');
+    vector<string> info = splitString(inp, ';');
     if (info.size() != 6) {
         throw invalid_argument("Khong the tao hero do thieu hoac du tham so: " + inp);
     }

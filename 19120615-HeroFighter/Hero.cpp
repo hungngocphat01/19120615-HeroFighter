@@ -1,5 +1,10 @@
 ﻿#include "Hero.h"
 
+/*
+* File này implement các hàm trong abstract class Hero, chứa các thông tin
+* và hành động cơ bản của tất cả các hero, không phụ thuộc vào ngũ hệ.
+*/
+
 // Hệ số thủ của đối phương bị giảm khi đối thủ bị khắc (conquered enemy def factor)
 constexpr float CnqrdEnmyDEFFctr = 0.5;
 // Hệ số công của hero đánh được tăng khi đối thủ bị khắc (conquered enemy my atk factor)
@@ -30,7 +35,7 @@ result_t Hero::batDauDanh(Hero& enemy)
 	*/
 
 	// Thực hiện đánh tới khi nào một trong 2 thua (máu <= 0)
-	while (this->fMau * enemy.fMau > 0 && THOIGIANTRANDAU > 0) {
+	while (this->fMau * enemy.fMau > 0 && glThoiGianTranDau > 0) {
 		// Ai có thời gian chờ = 0 được đánh trước
 		// Bằng nhau thì pick random
 		
@@ -50,7 +55,7 @@ result_t Hero::batDauDanh(Hero& enemy)
 			enemy.TanCong(*this);
 		}
 
-		THOIGIANTRANDAU--;
+		glThoiGianTranDau--;
 	}
 
 	if (this->fMau > 0 && enemy.fMau > 0) {

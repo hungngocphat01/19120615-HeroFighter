@@ -53,5 +53,8 @@
     <ClInclude Include="Logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MenuEntries.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

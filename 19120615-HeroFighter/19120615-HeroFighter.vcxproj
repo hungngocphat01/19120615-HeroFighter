@@ -147,6 +147,7 @@
     <ClCompile Include="Team.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MenuEntries.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HerowAttribute.h" />
     <ClInclude Include="Logging.h" />

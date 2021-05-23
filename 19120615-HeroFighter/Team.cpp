@@ -1,5 +1,10 @@
 ﻿#include "Team.h"
 
+Team::Team(string ten)
+{
+	this->strTenDoiChoi = ten;
+}
+
 void Team::themThanhVienMoi(string data)
 {
 	Hero* newhero = Hero::taoHeroMoi(data);
@@ -14,5 +19,12 @@ void Team::capNhatMoiTruong(attribute_t mtr)
 {
 	for (Hero*& member : arrThanhVien) {
 		member->capNhtThgSoTheoMoiTrg(mtr);
+	}
+}
+
+Team::~Team()
+{
+	for (Hero*& thanhvien : arrThanhVien) {
+		delete thanhvien;
 	}
 }
