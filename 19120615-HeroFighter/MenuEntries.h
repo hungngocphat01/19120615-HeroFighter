@@ -6,8 +6,8 @@
 * các menu khi entry tương ứng được chọn
 */
 
-string glUsername1;
-string glUsername2;
+Team glTeam1;
+Team glTeam2;
 
 void xemLog() {
 
@@ -24,3 +24,4 @@ void dauVoiUser() {
 void batDauTranDau() {
 
 }
+
