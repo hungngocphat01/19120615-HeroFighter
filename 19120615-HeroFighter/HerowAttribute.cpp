@@ -112,10 +112,10 @@ Hero* Hero::taoHeroMoi(string inp) {
 /*************** KHU VỰC IMPLEMENT HÀM capNhtThgSoTheoMoiTrg ***************/
 
 // Hệ số tăng máu và giảm tốc độ nếu hợp môi trường
-constexpr float HeSoMauSinhMtr = 1.05;
-constexpr float HeSoTdoSinhMtr = 0.9;
+constexpr float HeSoMauSinhMtr = 1.05F;
+constexpr float HeSoTdoSinhMtr = 0.9F;
 // Hệ số giảm máu nếu trái môi trường
-constexpr float HeSoMauKhacMtr = 0.97;
+constexpr float HeSoMauKhacMtr = 0.97F;
 
 void HeroMetal::capNhtThgSoTheoMoiTrg(attribute_t moitruong)
 {
