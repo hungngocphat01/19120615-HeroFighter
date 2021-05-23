@@ -5,6 +5,11 @@ Team::Team(string ten)
 	this->strTenDoiChoi = ten;
 }
 
+Team::Team()
+{
+	strTenDoiChoi = "";
+}
+
 void Team::themThanhVienMoi(string data)
 {
 	Hero* newhero = Hero::taoHeroMoi(data);
