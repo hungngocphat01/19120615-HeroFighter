@@ -1,27 +1,25 @@
 ﻿#pragma once
 #include "Logging.h"
+#include "Team.h"
+#include "Menu.h"
+#include "Logging.h"
 
 /*
-* File này chứa prototype của các doạn code sẽ được thực thi trong 
-* các menu khi entry tương ứng được chọn
+* File khai báo các đoạn code sẽ được thực thi trong 
+* các menu khi entry tương ứng được chọn.
 */
 
 Team glTeam1;
 Team glTeam2;
 
-void xemLog() {
+// Khi user chọn xem log từ main menu
+void xemLog();
+// Khi user chọn bắt đầu trận đấu từ main menu
+void taoTranDau();
+// Entry đấu với npc trong menu trận đấu
+void dauVoiNPC();
+// Entry đấu với user trong menu trận đấu
+void dauVoiUser();
 
-}
-
-void dauVoiNPC() {
-
-}
-
-void dauVoiUser() {
-
-}
-
-void batDauTranDau() {
-
-}
-
+// Bắt đầu đấu
+void batDauTranDau();
