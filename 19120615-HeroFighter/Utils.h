@@ -1,13 +1,11 @@
 ﻿#pragma once
-
 #include <string>
 #include <vector>
 #include <sstream>
-#include <typeinfo>
 using namespace std;
 
 /*
-* File này định nghĩa các hàm tiện ích lẻ tẻ không thuộc 
+* File này khai báo và định nghĩa các hàm tiện ích lẻ tẻ không thuộc 
 * một lĩnh vực cụ thể nào (nên em không nhét mấy hàm này vào chung 1 class)
 */
 
