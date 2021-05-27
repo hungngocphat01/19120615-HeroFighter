@@ -283,3 +283,26 @@ void HeroEarth::capNhtThgSoTrongTeam(Hero& dgdoi)
         this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
+
+/*************** KHU VỰC IMPLEMENT HÀM thuocTinh ***************/
+
+attribute_t HeroMetal::thuocTinh() const
+{
+    return KIM;
+}
+attribute_t HeroWood::thuocTinh() const
+{
+    return MOC;
+}
+attribute_t HeroEarth::thuocTinh() const
+{
+    return THO;
+}
+attribute_t HeroWater::thuocTinh() const
+{
+    return THUY;
+}
+attribute_t HeroFire::thuocTinh() const
+{
+    return HOA;
+}

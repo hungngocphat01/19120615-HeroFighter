@@ -6,8 +6,10 @@
 #include <stdexcept>
 
 /*
-* File này định nghĩa các Hero cụ thể có thuộc tính (Hero with Attribute), kế thừa từ lớp cha Hero.
+* File này khai báo các Hero cụ thể có thuộc tính (Hero with Attribute), kế thừa từ lớp cha Hero.
 * Vì số lượng hero là rất nhiều nên em xin bỏ hết vào một file cho tiện quản lý.
+* Những hàm này đều là override của các hàm bên Hero (đã có comment rất kỹ) nên em xin phép không ghi
+  thêm comment ở bên này nữa.
 */
 
 class HeroMetal : public Hero 
@@ -16,49 +18,49 @@ public:
 	// Kế thừa tất cả constructor
 	using Hero::Hero;
 
-	virtual attribute_t thuocTinh() const override { return KIM; }
-	virtual result_t batDauDanh(Hero&) override;
-	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	virtual void capNhtThgSoTrongTeam(Hero&) override;
+	attribute_t thuocTinh() const override;
+	result_t batDauDanh(Hero&) override;
+	void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	void capNhtThgSoTrongTeam(Hero&) override;
 };
 
 class HeroWood : public Hero 
 {
 public:
 	using Hero::Hero;
-	virtual attribute_t thuocTinh() const override { return MOC; }
-	virtual result_t batDauDanh(Hero&) override;
-	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	virtual void capNhtThgSoTrongTeam(Hero&) override;
+	attribute_t thuocTinh() const override;
+	result_t batDauDanh(Hero&) override;
+	void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	void capNhtThgSoTrongTeam(Hero&) override;
 };
 
 class HeroWater : public Hero 
 {
 public:
 	using Hero::Hero;
-	virtual attribute_t thuocTinh() const override { return THUY; }
-	virtual result_t batDauDanh(Hero&) override;
-	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	virtual void capNhtThgSoTrongTeam(Hero&) override;
+	attribute_t thuocTinh() const override;
+	result_t batDauDanh(Hero&) override;
+	void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	void capNhtThgSoTrongTeam(Hero&) override;
 };
 
 class HeroFire : public Hero 
 {
 public:
 	using Hero::Hero;
-	virtual attribute_t thuocTinh() const override { return HOA; }
-	virtual result_t batDauDanh(Hero&) override;
-	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	virtual void capNhtThgSoTrongTeam(Hero&) override;
+	attribute_t thuocTinh() const override;
+	result_t batDauDanh(Hero&) override;
+	void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	void capNhtThgSoTrongTeam(Hero&) override;
 };
 
 class HeroEarth : public Hero 
 {
 public:
 	using Hero::Hero;
-	virtual attribute_t thuocTinh() const override { return THO; }
-	virtual result_t batDauDanh(Hero&) override;
-	virtual void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	virtual void capNhtThgSoTrongTeam(Hero&) override;
+	attribute_t thuocTinh() const override;
+	result_t batDauDanh(Hero&) override;
+	void capNhtThgSoTheoMoiTrg(attribute_t) override;
+	void capNhtThgSoTrongTeam(Hero&) override;
 };
 
