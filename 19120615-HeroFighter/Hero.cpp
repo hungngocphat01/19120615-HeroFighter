@@ -5,6 +5,8 @@
 * và hành động cơ bản của tất cả các hero, không phụ thuộc vào ngũ hệ.
 */
 
+vector<string> Hero::danhSachHero;
+
 // Hệ số thủ của đối phương bị giảm khi đối thủ bị khắc (conquered enemy def factor)
 constexpr float HeSoThuKhiDthBiKhac = 0.5F;
 // Hệ số công của hero đánh được tăng khi đối thủ bị khắc (conquered enemy my atk factor)
@@ -15,6 +17,19 @@ constexpr float HeSoTdoKhiBiDgDoiKhac = 1.1F;
 constexpr float HeSoMauKhiDcDgDoiSinh = 1.15F;
 
 float glThoiGianTranDau = 0;
+
+void Hero::napDanhSachHero(ifstream& fin)
+{
+	if (!fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			string line;
+			getline(fin, line);
+			danhSachHero.push_back(line);
+		}
+	}
+}
 
 Hero::Hero(string name, float hp, float atk, float def, float spd)
 {
@@ -41,7 +56,7 @@ result_t Hero::batDauDanh(Hero& enemy)
 		// Ai có thời gian chờ = 0 được đánh trước
 		// Bằng nhau thì pick random
 		
-		if (this->fWAIT == 0 && enemy.fWAIT == 0) {
+		if (this->fThGianCho == 0 && enemy.fThGianCho == 0) {
 			int r = rand() % 2 + 1;
 			if (r == 1) {
 				this->TanCong(enemy);
@@ -50,10 +65,10 @@ result_t Hero::batDauDanh(Hero& enemy)
 				enemy.TanCong(*this);
 			}
 		}
-		else if (this->fWAIT == 0) {
+		else if (this->fThGianCho == 0) {
 			this->TanCong(enemy);
 		}
-		else if (enemy.fWAIT == 0) {
+		else if (enemy.fThGianCho == 0) {
 			enemy.TanCong(*this);
 		}
 
@@ -90,9 +105,39 @@ void Hero::capNhtThgSoKhiDcDngDoiSinh()
 void Hero::TanCong(Hero& enemy)
 {
 	enemy.fMau -= (this->fCong - enemy.fThu);
-	this->fWAIT = this->fTocDo;
+	this->fThGianCho = this->fTocDo;
 
-	if (enemy.fWAIT > 0) {
-		enemy.fWAIT--;
+	if (enemy.fThGianCho > 0) {
+		enemy.fThGianCho--;
 	}
+}
+
+string Hero::getTen() const
+{
+	return this->sTen;
+}
+
+float Hero::getMau() const
+{
+	return this->fMau;
+}
+
+float Hero::getCong() const
+{
+	return this->fCong;
+}
+
+float Hero::getThu() const
+{
+	return this->fThu;
+}
+
+float Hero::getTocDo() const
+{
+	return this->fTocDo;
+}
+
+float Hero::getThGianCho() const
+{
+	return this->fThGianCho;
 }
