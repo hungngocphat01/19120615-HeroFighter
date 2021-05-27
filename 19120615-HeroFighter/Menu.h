@@ -7,9 +7,10 @@ using namespace std;
 
 /*
 * Đây là class em thiết kế thêm để tự động hoá việc tạo và xử lí các menu
+* Khả năng tuỳ biến đủ nhiều để implement các menu trong game này
 */
 
-// Alias cho delegate kiểu void() -> void
+// Delegate kiểu () -> void
 using vfuncptr_t = function<void()>;
 
 class Menu
@@ -19,10 +20,16 @@ private:
 	vector<string> arrEntries;
 	vector<vfuncptr_t> arrActions;
 public:
-	string header = "HERO FIGHTER SIMULATOR\n(c) 2021 HUNG NGOC PHAT 19120615";
-	string menu_title;
+	string strHeader = "HERO FIGHTER SIMULATOR\n(c) 2021 HUNG NGOC PHAT 19120615";
+	string strTieuDe;
 
-	// Constructor có cả header và title
+	// Có xoá màn hình trước khi hiện menu này không?
+	bool blXoaManHinh = true;
+
+	// Có hiển thị lại menu này sau khi chạy xong entry đã chọn không?
+	bool blHienThiLai = true;
+
+	// Constructor có cả strHeader và title
 	Menu(string, string);
 	// Constructor chỉ có title
 	Menu(string);
@@ -31,14 +38,13 @@ public:
 	// và con trỏ hàm trỏ tới code cần thực thi khi chọn entry đó
 	void themEntryMoi(string, vfuncptr_t);
 
-	// Hiển thị một menu, lặp mãi mãi đến khi user chọn thoát
-	// Nếu có exception thì throw về menu trước, đến main menu thì throw ra hàm main
-	// Tham số đầu: phần code custom cần chạy trước khi hiển thị menu (mặc định là không)
-	// Tham số sau: có cần clear screen hay không (mặc định là có)
-	void hienThi(vfuncptr_t custom = nullptr, bool clrscr = true);
+	// Hiển thị một menu, lặp mãi mãi đến khi user chọn thoát.
+	// Nếu có exception thì throw về menu trước, đến main menu thì throw ra hàm main.
+	// Tham số đầu: phần code custom cần chạy trước khi hiển thị menu dưới dạng.
+	//              con trỏ hàm hoặc lambda expression (mặc định là không có).
+	// Tham số sau: có cần clear screen hay không (mặc định là có).
+	void hienThi(vfuncptr_t custom = nullptr);
 
-	// Chạy menu nhưng không hiển thị nội dung menu mà chỉ hiện tiêu đề menu,
-	// nội dung tuỳ chỉnh được truyền vào dưới dạng lambda expression
-	void customMenu(vfuncptr_t);
+	// In ra header của menu
+	void inHeader();
 };
-
