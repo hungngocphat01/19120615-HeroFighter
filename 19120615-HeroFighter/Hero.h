@@ -2,10 +2,12 @@
 #include <string>
 #include <map>
 #include <cstdlib>
+#include <fstream>
+#include <vector>
 using namespace std;
 
 /*
-* File này định nghĩa abstract class Hero, chứa các thông tin 
+* File này khai báo abstract class Hero, chứa các thông tin 
 * và hành động cơ bản của tất cả các hero, không phụ thuộc vào ngũ hệ.
 * Các hàm có phụ thuộc vào ngũ hệ sẽ là hàm thuần ảo.
 */
@@ -34,9 +36,15 @@ protected:
 	// Hàm này không thể được gọi bừa bãi mà chỉ có thể được gọi từ hàm public batDauDanh
 	void TanCong(Hero&);
 
-	float fWAIT = 0; // thời gian chờ còn lại khi đánh
+	float fThGianCho = 0; // thời gian chờ còn lại khi đánh
 
 public:
+	// Danh sách các hero có thể sử dụng
+	static vector<string> danhSachHero;
+
+	// Nạp danh sách các hero từ file
+	static void napDanhSachHero(ifstream&);
+
 	Hero(string name, float hp, float atk, float def, float spd);
 	
 	// Phân tích một chuỗi (đọc từ file) và tạo hero thích hợp
@@ -69,10 +77,11 @@ public:
 	virtual attribute_t thuocTinh() const = 0;
 
 	// Các getter
-	string getTen() const { return this->sTen;  }
-	float getHP() const { return this->fMau; }
-	float getATK() const { return this->fCong; }
-	float getDEF() const { return this->fThu; }
-	float getSPD() const { return this->fTocDo; }
-	float getWAIT() const { return this->fWAIT; }
+	
+	string getTen() const;
+	float getMau() const;
+	float getCong() const;
+	float getThu() const;
+	float getTocDo() const;
+	float getThGianCho() const;
 };
