@@ -3,18 +3,18 @@
 // Lambda expression
 void printLine()
 {
-	cout << "--------------------------" << endl;
+	cout << "-------------------------------" << endl;
 };
 
-Menu::Menu(string header, string title)
+Menu::Menu(string strHeader, string title)
 {
-	this->header = header;
-	this->menu_title = title;
+	this->strHeader = strHeader;
+	this->strTieuDe = title;
 }
 
 Menu::Menu(string title)
 {
-	this->menu_title = title;
+	this->strTieuDe = title;
 }
 
 void Menu::themEntryMoi(string description, vfuncptr_t callback)
@@ -23,49 +23,58 @@ void Menu::themEntryMoi(string description, vfuncptr_t callback)
 	this->arrActions.push_back(callback);
 }
 
-void Menu::hienThi(vfuncptr_t customfunc, bool clrscr)
+void Menu::hienThi(vfuncptr_t customfunc)
 {
-	if (clrscr) 
+	try 
 	{
-		system("cls");
+		while (true)
+		{
+			inHeader();
+
+			if (customfunc != nullptr) 
+			{
+				customfunc();
+			}
+
+			// In ra các arrEntries
+			for (unsigned i = 0; i < arrEntries.size(); i++) 
+			{
+				cout << i + 1 << ". " << arrEntries[i] << "." << endl;
+			}
+			cout << "0. Quay lai menu truoc" << endl;
+			printLine();
+			cout << "Lua chon: ";
+			short choice;
+			cin >> choice;
+			cin.ignore();
+
+			if (choice == 0) 
+			{
+				break;
+			}
+
+			vfuncptr_t action = arrActions[choice - 1];
+			action();
+
+			if (!blHienThiLai) 
+			{
+				break;
+			}
+		}
 	}
-
-	while (true)
-	{
-		cout << header << endl;
-		printLine();
-		cout << menu_title << endl;
-		printLine();
-
-		if (customfunc != nullptr) {
-			customfunc();
-		}
-
-		// In ra các arrEntries
-		for (unsigned i = 0; i < arrEntries.size(); i++) {
-			cout << i + 1 << ". " << arrEntries[i] << "." << endl;
-		}
-		cout << "0. Quay lai menu truoc" << endl;
-		printLine();
-		cout << "Lua chon: ";
-		short choice;
-		cin >> choice;
-		cin.ignore();
-
-		if (choice == 0) {
-			break;
-		}
-
-		vfuncptr_t action = arrActions[choice];
-		action();
+	catch (exception& e) {
+		throw e;
 	}
 }
 
-void Menu::customMenu(vfuncptr_t customfunc)
+void Menu::inHeader()
 {
-	cout << header << endl;
+	if (blXoaManHinh)
+	{
+		system("cls");
+	}
+	cout << strHeader << endl;
 	printLine();
-	cout << menu_title << endl;
+	cout << strTieuDe << endl;
 	printLine();
-	customfunc();
 }
