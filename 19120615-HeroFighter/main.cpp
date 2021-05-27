@@ -4,7 +4,7 @@
 /*
  										ĐỒ ÁN CUỐI KỲ
  						THỰC HÀNH PHƯƠNG PHÁP LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG
-						     LỚP 19_2, HỌC KỲ 2 NĂM HỌC 2020 - 2021 
+						     LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021 
   
                                      1. THÔNG TIN CHUNG
 * Mô phỏng game HeroFighter trên console.
@@ -50,28 +50,48 @@
 	* class HeroFire, HeroMetal, ...: các lớp cụ thể cho từng hệ hero.
 	* class Team: lớp để quản lí một đội chơi.
 	* class Logging: lớp phát sinh thêm để quản lý logging.
-	* class Menu: lớp phát sinh thêm để quản lí các menu.
+	* class Menu: một thư viện menu tự chế với khả năng tuỳ biến cao bằng lambda expression.
 	* Module Utils: chứa các hàm tiện ích riêng lẻ.
 */
 #pragma endregion 
 
-#include "Team.h"
-#include "Menu.h"
 #include "MenuEntries.h"
 
 int main() 
 {
+	srand(time(NULL));
+	// Tạo layout cho menu chính
 	Menu mainmenu = Menu("Menu chinh");
-	mainmenu.customMenu([]() {
-		cout << "Nhap ten user 1: ";
-		getline(cin, glTeam1.strTenDoiChoi);
-	});
+	// Hiển thị layout và hỏi tên người chơi
+	mainmenu.inHeader();
+	cout << "Nhap ten user 1: ";
+	getline(cin, glTeam1.strTenDoiChoi);
+	system("cls");
 	
+	// Thêm các trường cho menu chính
 	mainmenu.themEntryMoi("Xem log", xemLog);
-	mainmenu.themEntryMoi("Bat dau tran dau", batDauTranDau);
-	mainmenu.hienThi([]() {
-		cout << "Xin chao, " << glTeam1.strTenDoiChoi << endl << endl;
-	});
+	mainmenu.themEntryMoi("Bat dau tran dau", taoTranDau);
 
+	// Show ra màn hình
+	try 
+	{
+		Logger::strmLogFile.open("HeroFighterLog.txt");
+		mainmenu.hienThi([] () 
+		{
+			cout << "Xin chao, " << glTeam1.strTenDoiChoi << endl << endl;
+		});
+	}
+	catch (exception& e) 
+	{
+		cout << "\n\n";
+		Logger::themLog("Da co loi xay ra khi chay chuong trinh: " + string(e.what()));
+
+		system("pause");
+		if (Logger::strmLogFile.is_open()) 
+		{
+			Logger::strmLogFile.close();
+		}
+	}
+	
 	return 0;
 }
