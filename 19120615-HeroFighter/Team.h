@@ -1,6 +1,11 @@
 ﻿#pragma once
 #include "HerowAttribute.h"
+#include "Menu.h"
 #include <vector>
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <random>
 
 /*
 * Đây là class để quản lý các đội chơi
@@ -23,8 +28,23 @@ public:
 	// Hàm này phải được gọi sau khi thêm đủ các thành viên team vào
 	void capNhatMoiTruong(attribute_t);
 
-	// Đọc team từ file
-	void docTuFile(const ifstream&);
+	// Hiển thị lực lượng
+	void hienThiLucLuong();
+
+	// Số thành viên
+	int soLuongThanhVien();
+
+	// Hiển thị menu cho user lựa chọn thành viên
+	void luaChon();
+
+	// Tạo một team ngẫu nhiên cho NPC
+	void taoNgauNhien();
+
+	// Reset dữ liệu team
+	void xoa();
+
+	// Cho team bắt đầu đấu với team khác
+	result_t batDauDauVoi(Team&);
 
 	virtual ~Team();
 };
