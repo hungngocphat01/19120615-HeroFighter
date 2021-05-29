@@ -18,7 +18,7 @@ static vector<string> splitString(string str, char dlmtr)
 
 	while (!ss.eof()) {
 		string elem;
-		getline(ss, elem);
+		getline(ss, elem, dlmtr);
 		// Bỏ qua các chuỗi bị rỗng nếu có
 		if (elem.length() == 0) {
 			continue;

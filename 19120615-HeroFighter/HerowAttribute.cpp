@@ -75,32 +75,25 @@ Hero* Hero::taoHeroMoi(string inp) {
     try 
     {
         string name = info[TEN];
-        attribute_t ttinh = stoi(info[TTINH]);
+        attribute_t ttinh = info[TTINH];
         float mau = stof(info[MAU]);
         float cong = stof(info[CONG]);
         float thu = stof(info[THU]);
         float tdo = stof(info[TDO]);
 
-        switch (ttinh)
-        {
-        case KIM:
+        if (info[TTINH] == KIM)
             h = new HeroMetal(name, mau, cong, thu, tdo);
-            break;
-        case MOC:
+        else if (info[TTINH] == MOC)
             h = new HeroWood(name, mau, cong, thu, tdo);
-            break;
-        case THUY:
+        else if (info[TTINH] == THUY)
             h = new HeroWater(name, mau, cong, thu, tdo);
-            break;
-        case HOA:
+        else if (info[TTINH] == HOA)
             h = new HeroFire(name, mau, cong, thu, tdo);
-            break;
-        case THO:
+        else if (info[TTINH] == THO)
             h = new HeroEarth(name, mau, cong, thu, tdo);
-            break;
-        default:
+        else
             throw invalid_argument("Thuoc tinh khong hop le: " + ttinh);
-        }
+
         return h;
     }
     catch (exception& e)

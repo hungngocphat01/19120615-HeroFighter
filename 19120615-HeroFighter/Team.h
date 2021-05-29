@@ -31,6 +31,9 @@ public:
 	// Hiển thị lực lượng
 	void hienThiLucLuong();
 
+	// Hiển thị kết quả (lực lượng sau khi đập nhau te tua)
+	void hienThiKetQua();
+
 	// Số thành viên
 	int soLuongThanhVien();
 

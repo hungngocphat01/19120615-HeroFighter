@@ -9,9 +9,6 @@
 * các menu khi entry tương ứng được chọn.
 */
 
-Team glTeam1;
-Team glTeam2;
-
 // Khi user chọn xem log từ main menu
 void xemLog();
 // Khi user chọn bắt đầu trận đấu từ main menu

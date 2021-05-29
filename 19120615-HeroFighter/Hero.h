@@ -13,14 +13,23 @@ using namespace std;
 */
 
 enum { TRUNGHOA, TSINH, TKHAC };	// trung hoà, tương sinh, tương khắc
-enum { KIM, MOC, THUY, HOA, THO };	// các thuộc tính (hệ)
 enum { THUA, THANG, HUE };			// kết quả trận đấu (thua, thắng, huề)
+
+#define KIM "Metal"
+#define MOC "Wood"
+#define THUY "Water"
+#define HOA "Fire"
+#define THO "Earth"
+
+extern const string glBangTraThuocTinh[];
 
 // Thời gian chờ của cả trận đấu
 extern float glThoiGianTranDau;
+extern map<int, string> glTraThuocTinh;
 
-// Một số alias cho kiểu int để dùng ENUM (để code nhìn đẹp hơn)
-typedef int attribute_t;
+
+// Một số alias 
+typedef string attribute_t;
 typedef int result_t;
 
 class Hero
@@ -39,11 +48,14 @@ protected:
 	float fThGianCho = 0; // thời gian chờ còn lại khi đánh
 
 public:
+	// Số đòn đánh đã ra (thông tin tham khảo, không sd để tính điểm)
+	int iSoDonDanh = 0;
+
 	// Danh sách các hero có thể sử dụng
 	static vector<string> danhSachHero;
 
 	// Nạp danh sách các hero từ file
-	static void napDanhSachHero(ifstream&);
+	static void napDanhSachHero(string);
 
 	Hero(string name, float hp, float atk, float def, float spd);
 	

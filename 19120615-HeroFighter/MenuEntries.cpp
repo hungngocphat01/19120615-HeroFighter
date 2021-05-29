@@ -1,5 +1,9 @@
 ﻿#include "MenuEntries.h"
 
+void xemLog()
+{
+}
+
 void taoTranDau()
 {
 	Menu menu = Menu("Bat dau tran dau");
@@ -33,10 +37,12 @@ void dauVoiNPC()
 		glTeam1.luaChon();
 		// Tạo ngẫu nhiên một team cho NPC
 		glTeam2.taoNgauNhien();
+		glTeam2.strTenDoiChoi = "Stupid AI";
 
 		// Cho user chọn thời gian
 		cout << "Nhap thoi gian [1/2/5] phut: ";
 		cin >> glThoiGianTranDau;
+
 		cin.ignore();
 
 		if (glThoiGianTranDau != 1 && glThoiGianTranDau != 2 && glThoiGianTranDau != 5) 
@@ -45,14 +51,21 @@ void dauVoiNPC()
 			system("pause");
 			return;
 		}
+		glThoiGianTranDau *= 60000; // đổi ra mili giây
 
 		system("cls");
 		menu.inHeader();
 
+		attribute_t moitruong = glBangTraThuocTinh[rand() % 5];
+		glTeam1.capNhatMoiTruong(moitruong);
+		glTeam2.capNhatMoiTruong(moitruong);
+
+		cout << "Moi truong: " << moitruong << endl;
+
 		cout << "Tuong quan 2 doi choi: " << endl;
 		glTeam1.hienThiLucLuong();
 		cout << endl;
-		glTeam1.hienThiLucLuong();
+		glTeam2.hienThiLucLuong();
 		cout << endl;
 		system("pause");
 
@@ -84,6 +97,7 @@ void dauVoiUser()
 		// Cho user chọn thời gian
 		cout << "Nhap thoi gian [1/2/5] phut: ";
 		cin >> glThoiGianTranDau;
+		glThoiGianTranDau *= 60000; // đổi ra mili giây
 		cin.ignore();
 
 		if (glThoiGianTranDau != 1 && glThoiGianTranDau != 2 && glThoiGianTranDau != 5)
@@ -117,10 +131,6 @@ void batDauTranDau()
 {
 	try
 	{
-		attribute_t moitruong = rand() % KIM + THO;
-		glTeam1.capNhatMoiTruong(moitruong);
-		glTeam2.capNhatMoiTruong(moitruong);
-
 		Menu match("Dau voi NPC");
 		match.inHeader();
 		
@@ -130,8 +140,29 @@ void batDauTranDau()
 			system("pause");
 		}
 
-		glTeam1.batDauDauVoi(glTeam2);
-		cout << "Da phan thang bai! Tran dau van con lai: " << glThoiGianTranDau / 1000 << " giay!" << endl;
+		result_t kq = glTeam1.batDauDauVoi(glTeam2);
+		if (kq == THANG)
+		{
+			cout << glTeam1.strTenDoiChoi;
+		}
+		else if (kq == THUA)
+		{
+			cout << glTeam2.strTenDoiChoi;
+		}
+		if (kq != HUE)
+		{
+			cout << "Da danh chien thang chung cuoc!" << endl;
+			cout << "Cac thong so con lai nhu sau:" << endl;
+			glTeam1.hienThiKetQua();
+			glTeam1.hienThiKetQua();
+		}
+		else
+		{
+			cout << "Vay la ca 2 doi hoa nhau!" << endl;
+		}
+		
+		cout << "Vay la phan thang bai!\nThoi gian con lai: " << glThoiGianTranDau / 1000 << " giay!" << endl;
+		system("pause");
 	}
 	catch (exception& e) 
 	{

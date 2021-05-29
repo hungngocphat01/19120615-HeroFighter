@@ -57,6 +57,10 @@
 
 #include "MenuEntries.h"
 
+Team glTeam1;
+Team glTeam2;
+ifstream Logger::strmLogFile;
+
 int main() 
 {
 	srand(time(NULL));
@@ -75,6 +79,7 @@ int main()
 	// Show ra màn hình
 	try 
 	{
+		Hero::napDanhSachHero("ListHero.txt");
 		Logger::strmLogFile.open("HeroFighterLog.txt");
 		mainmenu.hienThi([] () 
 		{

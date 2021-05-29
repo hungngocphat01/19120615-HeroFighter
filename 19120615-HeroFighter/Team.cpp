@@ -30,21 +30,38 @@ void Team::capNhatMoiTruong(attribute_t mtr)
 
 void Team::hienThiLucLuong()
 {
-	cout << "Luc luong cua " << this->strTenDoiChoi << endl;
-	cout << setw(15) << "Ten"
-		<< setw(4) << "Mau"
-		<< setw(4) << "Cong"
-		<< setw(4) << "Thu"
-		<< setw(4) << "Toc do"
+	cout << "Luc luong cua " << this->strTenDoiChoi << ":" << endl;
+	cout << setw(20) << "Ten"
+		<< setw(6) << "Mau"
+		<< setw(6) << "Cong"
+		<< setw(6) << "Thu"
+		<< setw(6) << "T.do"
 		<< endl;
 
 	for (Hero* hero : arrThanhVien)
 	{
-		cout << setw(15) << hero->getTen()
-			<< setw(4) << hero->getMau()
-			<< setw(4) << hero->getCong()
-			<< setw(4) << hero->getThu()
-			<< setw(4) << hero->getThGianCho() 
+		cout << setw(20) << hero->getTen()
+			<< setw(6) << hero->getMau()
+			<< setw(6) << hero->getCong()
+			<< setw(6) << hero->getThu()
+			<< setw(6) << hero->getTocDo() 
+			<< endl;
+	}
+}
+
+void Team::hienThiKetQua()
+{
+	cout << "Luc luong cua " << this->strTenDoiChoi << ":" << endl;
+	cout << setw(20) << "Ten"
+		<< setw(6) << "Mau"
+		<< "So don danh da ra"
+		<< endl;
+
+	for (Hero* hero : arrThanhVien)
+	{
+		cout << setw(20) << hero->getTen()
+			<< setw(6) << hero->getMau()
+			<< hero->iSoDonDanh
 			<< endl;
 	}
 }
@@ -57,7 +74,7 @@ int Team::soLuongThanhVien()
 void Team::luaChon()
 {
 	Menu menu("Lua chon thanh vien cho " + this->strTenDoiChoi);
-	bool valid = true;
+	bool valid = false;
 	while (!valid)
 	{
 		menu.inHeader();
@@ -74,7 +91,15 @@ void Team::luaChon()
 		if (max({ x, y, z }) > Hero::danhSachHero.size())
 		{
 			cout << "Ban da nhap mot so khong hop le. Vui long kiem tra lai!" << endl;
+			valid = false;
 			system("pause");
+		}
+		else {
+			valid = true;
+			for (int i : {x, y, z})
+			{
+				this->themThanhVienMoi(Hero::danhSachHero[i - 1]);
+			}
 		}
 	}
 }
@@ -106,7 +131,6 @@ void Team::taoNgauNhien()
 
 void Team::xoa()
 {
-	this->strTenDoiChoi = "";
 	this->arrThanhVien.clear();
 }
 
@@ -138,6 +162,8 @@ result_t Team::batDauDauVoi(Team& doithu)
 			break;
 		}
 	}
+
+	system("pause");
 
 	if (thangCount == thuaCount)
 	{

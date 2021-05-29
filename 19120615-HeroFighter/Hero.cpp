@@ -6,6 +6,8 @@
 */
 
 vector<string> Hero::danhSachHero;
+const string glBangTraThuocTinh[] = { KIM, MOC, THUY, HOA, THO };
+
 
 // Hệ số thủ của đối phương bị giảm khi đối thủ bị khắc (conquered enemy def factor)
 constexpr float HeSoThuKhiDthBiKhac = 0.5F;
@@ -18,9 +20,12 @@ constexpr float HeSoMauKhiDcDgDoiSinh = 1.15F;
 
 float glThoiGianTranDau = 0;
 
-void Hero::napDanhSachHero(ifstream& fin)
+void Hero::napDanhSachHero(string filename)
 {
-	if (!fin.is_open())
+	ifstream fin;
+	fin.open(filename);
+
+	if (fin.is_open())
 	{
 		while (!fin.eof())
 		{
@@ -28,6 +33,10 @@ void Hero::napDanhSachHero(ifstream& fin)
 			getline(fin, line);
 			danhSachHero.push_back(line);
 		}
+		fin.close();
+	}
+	else {
+		throw invalid_argument("Tap tin danh sach hero khong ton tai: " + filename);
 	}
 }
 
@@ -65,18 +74,20 @@ result_t Hero::batDauDanh(Hero& enemy)
 				enemy.TanCong(*this);
 			}
 		}
-		else if (this->fThGianCho == 0) {
+		else if (this->fThGianCho <= 0) {
 			this->TanCong(enemy);
 		}
-		else if (enemy.fThGianCho == 0) {
+		else if (enemy.fThGianCho <= 0) {
 			enemy.TanCong(*this);
 		}
 
 		glThoiGianTranDau--;
+		this->fThGianCho--;
+		enemy.fThGianCho--;
 	}
 
 	if (this->fMau > 0 && enemy.fMau > 0) {
-		return HOA;
+		return HUE;
 	}
 	else if (this->fMau <= 0) {
 		return THUA;
@@ -106,10 +117,7 @@ void Hero::TanCong(Hero& enemy)
 {
 	enemy.fMau -= (this->fCong - enemy.fThu);
 	this->fThGianCho = this->fTocDo;
-
-	if (enemy.fThGianCho > 0) {
-		enemy.fThGianCho--;
-	}
+	this->iSoDonDanh++;
 }
 
 string Hero::getTen() const
