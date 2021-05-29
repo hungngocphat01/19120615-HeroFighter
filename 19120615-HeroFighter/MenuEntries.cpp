@@ -45,13 +45,13 @@ void dauVoiNPC()
 
 		cin.ignore();
 
-		if (glThoiGianTranDau != 1 && glThoiGianTranDau != 2 && glThoiGianTranDau != 5) 
-		{
-			cout << "Ban dau chon sai! Chuong trinh se thoat ra menu chinh." << endl;
-			system("pause");
-			return;
-		}
-		glThoiGianTranDau *= 60000; // đổi ra mili giây
+		//if (glThoiGianTranDau != 1 && glThoiGianTranDau != 2 && glThoiGianTranDau != 5) 
+		//{
+		//	cout << "Ban dau chon sai! Chuong trinh se thoat ra menu chinh." << endl;
+		//	system("pause");
+		//	return;
+		//}
+		glThoiGianTranDau *= 60; // đổi ra giây
 
 		system("cls");
 		menu.inHeader();
@@ -97,15 +97,15 @@ void dauVoiUser()
 		// Cho user chọn thời gian
 		cout << "Nhap thoi gian [1/2/5] phut: ";
 		cin >> glThoiGianTranDau;
-		glThoiGianTranDau *= 60000; // đổi ra mili giây
+		glThoiGianTranDau *= 60; // đổi ra giây
 		cin.ignore();
 
-		if (glThoiGianTranDau != 1 && glThoiGianTranDau != 2 && glThoiGianTranDau != 5)
-		{
-			cout << "Ban dau chon sai! Chuong trinh se thoat ra menu chinh." << endl;
-			system("pause");
-			return;
-		}
+		//if (glThoiGianTranDau != 1 && glThoiGianTranDau != 2 && glThoiGianTranDau != 5)
+		//{
+		//	cout << "Ban dau chon sai! Chuong trinh se thoat ra menu chinh." << endl;
+		//	system("pause");
+		//	return;
+		//}
 
 		system("cls");
 		menu.inHeader();
@@ -152,16 +152,20 @@ void batDauTranDau()
 		if (kq != HUE)
 		{
 			cout << "Da danh chien thang chung cuoc!" << endl;
-			cout << "Cac thong so con lai nhu sau:" << endl;
-			glTeam1.hienThiKetQua();
-			glTeam1.hienThiKetQua();
 		}
 		else
 		{
 			cout << "Vay la ca 2 doi hoa nhau!" << endl;
 		}
+
+		cout << "\nCac thong so con lai nhu sau:" << endl;
+		glTeam1.hienThiKetQua();
+		glTeam2.hienThiKetQua();
 		
-		cout << "Vay la phan thang bai!\nThoi gian con lai: " << glThoiGianTranDau / 1000 << " giay!" << endl;
+		if (glThoiGianTranDau > 0)
+		{
+			cout << "\nThoi gian con lai: " << glThoiGianTranDau << " giay!" << endl;
+		}
 		system("pause");
 	}
 	catch (exception& e) 

@@ -41,7 +41,7 @@ void Team::hienThiLucLuong()
 	for (Hero* hero : arrThanhVien)
 	{
 		cout << setw(20) << hero->getTen()
-			<< setw(6) << hero->getMau()
+			<< setw(6) << (int)hero->getMau()
 			<< setw(6) << hero->getCong()
 			<< setw(6) << hero->getThu()
 			<< setw(6) << hero->getTocDo() 
@@ -54,14 +54,14 @@ void Team::hienThiKetQua()
 	cout << "Luc luong cua " << this->strTenDoiChoi << ":" << endl;
 	cout << setw(20) << "Ten"
 		<< setw(6) << "Mau"
-		<< "So don danh da ra"
+		<< setw(5) << "  So don danh da ra"
 		<< endl;
 
 	for (Hero* hero : arrThanhVien)
 	{
 		cout << setw(20) << hero->getTen()
-			<< setw(6) << hero->getMau()
-			<< hero->iSoDonDanh
+			<< setw(6) << (int)hero->getMau()
+			<< setw(5) << hero->iSoDonDanh
 			<< endl;
 	}
 }
@@ -160,6 +160,11 @@ result_t Team::batDauDauVoi(Team& doithu)
 		case HUE:
 			cout << "2 ben hoa nhau!" << endl << endl;
 			break;
+		}
+
+		if (glThoiGianTranDau <= 0)
+		{
+			cout << "Tran dau da het gio! Cac cap con lai se khong thi dau nua!" << endl;
 		}
 	}
 

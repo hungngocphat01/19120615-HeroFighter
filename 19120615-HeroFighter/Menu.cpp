@@ -1,6 +1,5 @@
 #include "Menu.h"
 
-// Lambda expression
 void printLine()
 {
 	cout << "-------------------------------" << endl;

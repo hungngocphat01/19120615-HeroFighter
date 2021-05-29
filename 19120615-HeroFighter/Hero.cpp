@@ -54,9 +54,8 @@ result_t Hero::batDauDanh(Hero& enemy)
 	/*
 		- Ai có thời gian chờ = 0 được đánh trước.
 		- Giả sử A đánh B.
-		- A đánh B xong thì A phải chờ 1 khoảng thời gian. Do đó gán A.WAIT = A.SPD
-		- Đồng thời giảm thời gian chờ của đối phương xuống 1 ms.
-		- Giảm thời gian chờ trận đấu xuống 1 ms.
+		- A đánh B xong thì A phải chờ 1 khoảng thời gian. Do đó gán A.fThoiGianCho = A.fTocDo
+		- Giảm thời gian chờ trận đấu và của cả 2 xuống 1 ms.
 		- Tiếp tục lặp đến khi 1 trong 2 chết hoặc hết giờ.
 	*/
 
@@ -86,14 +85,15 @@ result_t Hero::batDauDanh(Hero& enemy)
 		enemy.fThGianCho--;
 	}
 
-	if (this->fMau > 0 && enemy.fMau > 0) {
-		return HUE;
-	}
-	else if (this->fMau <= 0) {
+	if (this->fMau <= 0) {
 		return THUA;
 	}
-	else {
+	else if (enemy.fMau <= 0) {
 		return THANG;
+	}
+	else
+	{
+		return HUE;
 	}
 }
 

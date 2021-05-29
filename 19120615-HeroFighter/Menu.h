@@ -11,7 +11,7 @@ using namespace std;
 */
 
 // Delegate kiểu () -> void
-using vfuncptr_t = function<void()>;
+using vfuncptr_t = function<void()>; // vfuncptr_t = void function pointer type
 
 class Menu
 {
