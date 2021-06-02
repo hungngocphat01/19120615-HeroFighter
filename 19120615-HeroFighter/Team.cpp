@@ -78,17 +78,18 @@ void Team::luaChon()
 	while (!valid)
 	{
 		menu.inHeader();
-		cout << "Hay nhap 3 con so lien tiep (cach nhau boi dau cach) de chon 3 dong doi cua minh!" << endl;
 		for (int i = 0; i < Hero::danhSachHero.size(); i++)
 		{
 			cout << i + 1 << ". " << Hero::danhSachHero.at(i) << endl;
 		}
-		cout << "Nhap 3 so: ";
+		cout << "Hay nhap 3 con so lien tiep (cach nhau boi 01 dau cach) de chon dong doi cho minh!" << endl;
+		cout << "Nhap: ";
+
 		int x, y, z;
 		cin >> x >> y >> z;
-		cin.ignore();
+		stdinBufferClear();
 
-		if (max({ x, y, z }) > Hero::danhSachHero.size())
+		if (max({ x, y, z }) > Hero::danhSachHero.size() || min({ x, y, z }) <= 0)
 		{
 			cout << "Ban da nhap mot so khong hop le. Vui long kiem tra lai!" << endl;
 			valid = false;

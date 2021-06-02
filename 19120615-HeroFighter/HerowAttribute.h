@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "Hero.h"
-#include "Utils.h"
 #include <vector>
 #include <exception>
 #include <stdexcept>

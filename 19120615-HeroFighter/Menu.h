@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <functional>
+#include "Utils.h"
 using namespace std;
 
 /*
@@ -20,7 +21,7 @@ private:
 	vector<string> arrEntries;
 	vector<vfuncptr_t> arrActions;
 public:
-	string strHeader = "HERO FIGHTER SIMULATOR\n(c) 2021 HUNG NGOC PHAT 19120615";
+	string strHeader = "DO AN CUOI KY THUC HANH OOP\nHERO FIGHTER SIMULATOR\n(c) 2021 HUNG NGOC PHAT 19120615";
 	string strTieuDe;
 
 	// Có xoá màn hình trước khi hiện menu này không?

@@ -3,6 +3,7 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+#include <iostream>
 #include <sstream>
 using namespace std;
 
@@ -33,4 +34,9 @@ static vector<string> splitString(string str, char dlmtr)
 inline void sleep(int milisec)
 {
 	this_thread::sleep_for(std::chrono::milliseconds(milisec));
+}
+
+inline void stdinBufferClear()
+{
+	cin.ignore(INT_MAX, '\n');
 }

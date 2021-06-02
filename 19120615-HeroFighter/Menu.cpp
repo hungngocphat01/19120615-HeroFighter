@@ -45,7 +45,7 @@ void Menu::hienThi(vfuncptr_t customfunc)
 			cout << "Lua chon: ";
 			short choice;
 			cin >> choice;
-			cin.ignore();
+			stdinBufferClear();
 
 			if (choice == 0) 
 			{

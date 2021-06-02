@@ -40,7 +40,7 @@ void MatchManager::entryDauVoiUser()
 		// Cho user chọn thời gian
 		cout << "Nhap thoi gian [1/2/5] don vi tran dau: ";
 		cin >> glThoiGianTranDau;
-		cin.ignore();
+		stdinBufferClear();
 
 		if (glThoiGianTranDau != 1 && glThoiGianTranDau != 2 && glThoiGianTranDau != 5)
 		{

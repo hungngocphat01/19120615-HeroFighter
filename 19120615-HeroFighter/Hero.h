@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <vector>
+#include "Utils.h"
 using namespace std;
 
 /*
