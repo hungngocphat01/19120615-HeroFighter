@@ -40,5 +40,7 @@ public:
 	static void ghiXuongFile();
 	// Ghi nối tiếp log xuống file
 	static void ghiNoiTiepXuongFile();
+	// Entry hiển thị log khi chọn từ main menu
+	static void entryHienThiLog();
 };
 

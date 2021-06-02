@@ -33,7 +33,7 @@
     <ClCompile Include="Logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MenuEntries.cpp">
+    <ClCompile Include="MatchManageries.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,7 +56,7 @@
     <ClInclude Include="Logging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MenuEntries.h">
+    <ClInclude Include="MatchManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

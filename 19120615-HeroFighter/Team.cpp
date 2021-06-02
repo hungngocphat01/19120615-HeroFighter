@@ -145,6 +145,7 @@ result_t Team::batDauDauVoi(Team& doithu)
 		Hero* h1 = this->arrThanhVien[i];
 		Hero* h2 = doithu.arrThanhVien[i];
 		cout << "Cap thu " << i + 1 << ": " << h1->getTen() << " vs " << h2->getTen() << "!" << endl;
+		sleep(2000);
 		result_t kq = h1->batDauDanh(*h2);
 
 		switch (kq)
@@ -162,9 +163,11 @@ result_t Team::batDauDauVoi(Team& doithu)
 			break;
 		}
 
+		sleep(1000);
 		if (glThoiGianTranDau <= 0)
 		{
 			cout << "Tran dau da het gio! Cac cap con lai se khong thi dau nua!" << endl;
+			break;
 		}
 	}
 

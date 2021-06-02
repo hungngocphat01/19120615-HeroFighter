@@ -17,3 +17,7 @@ void Logger::ghiXuongFile()
 void Logger::ghiNoiTiepXuongFile()
 {
 }
+
+void Logger::entryHienThiLog()
+{
+}

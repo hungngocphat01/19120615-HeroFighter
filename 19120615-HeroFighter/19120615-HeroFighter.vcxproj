@@ -144,11 +144,11 @@
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuEntries.cpp" />
+    <ClCompile Include="MatchManageries.cpp" />
     <ClCompile Include="Team.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MenuEntries.h" />
+    <ClInclude Include="MatchManager.h" />
     <ClInclude Include="Hero.h" />
     <ClInclude Include="HerowAttribute.h" />
     <ClInclude Include="Logging.h" />

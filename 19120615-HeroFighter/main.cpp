@@ -42,6 +42,8 @@
 * Các alias cho các kiểu dữ liệu có sẵn (để cho có thêm một tí xíuu syntax sugar) thì được viết bằng 
   chữ cái viết thường, kèm thêm hậu tố "_t"
   Vd: attribute_t, result_t, vfuncptr_t, ...
+* Một số quy tắc khác, vd như tên hàm là entry được gọi từ 1 menu khác luôn bắt đầu bằng "entry", còn 
+  tên hàm bên trong có chứa menu thì bắt đầu bằng "menu", ...
 
 	                  3. CÁC MODULE/CLASS ĐƯỢC IMPLEMENT TRONG PROJECT NÀY
 * Ở đây em chỉ liệt kê và ghi vắn tắt công dụng của các module/class được nêu. Cụ thể hơn thì
@@ -52,12 +54,12 @@
 	* class Logging: lớp phát sinh thêm để quản lý logging.
 	* class Menu: một thư viện menu tự chế với khả năng tuỳ biến cao, sử dụng lambda expression 
 	  và con trỏ hàm.
-	* Module MenuEntries: chứa các hàm riêng lẻ được invoke khi chọn các chức năng bằng menu.
+	* class MatchManager: tập hợp các hàm static liên quan tới tạo trận đấu.
 	* Module Utils: chứa các hàm tiện ích riêng lẻ.
 */
 #pragma endregion 
 
-#include "MenuEntries.h"
+#include "MatchManager.h"
 
 Team glTeam1;
 Team glTeam2;
@@ -75,8 +77,8 @@ int main()
 	system("cls");
 	
 	// Thêm các trường cho menu chính
-	mainmenu.themEntryMoi("Xem log", xemLog);
-	mainmenu.themEntryMoi("Bat dau tran dau", taoTranDau);
+	mainmenu.themEntryMoi("Xem log", Logger::entryHienThiLog);
+	mainmenu.themEntryMoi("Bat dau tran dau", MatchManager::menuTaoTranDau);
 
 	// Show ra màn hình
 	try 

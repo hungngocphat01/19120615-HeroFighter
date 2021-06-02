@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <string>
 #include <vector>
+#include <chrono>
+#include <thread>
 #include <sstream>
 using namespace std;
 
@@ -26,4 +28,9 @@ static vector<string> splitString(string str, char dlmtr)
 		result.push_back(elem);
 	}
 	return result;
+}
+
+inline void sleep(int milisec)
+{
+	this_thread::sleep_for(std::chrono::milliseconds(milisec));
 }
