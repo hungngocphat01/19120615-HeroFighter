@@ -1,8 +1,8 @@
-<center>
+<div align="center">
 <h2>ĐỒ ÁN CUỐI KỲ</h2>
 <h1>THỰC HÀNH PHƯƠNG PHÁP LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG</h1>
 LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021 
-</center>
+</div>
  
 # 1. Thông tin chung
 - Mô phỏng game HeroFighter trên console.
