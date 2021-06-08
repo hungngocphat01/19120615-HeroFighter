@@ -92,7 +92,10 @@ Hero* Hero::taoHeroMoi(string inp) {
         else if (info[TTINH] == THO)
             h = new HeroEarth(name, mau, cong, thu, tdo);
         else
-            throw invalid_argument("Thuoc tinh khong hop le: " + ttinh);
+        {
+            string err = "Da xay ra loi khi xu ly hero: " + inp + "\nThuoc tinh khong hop le: " + ttinh;
+            throw invalid_argument(err);
+        }
 
         return h;
     }

@@ -33,7 +33,7 @@
     <ClCompile Include="Logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MatchManageries.cpp">
+    <ClCompile Include="MatchManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

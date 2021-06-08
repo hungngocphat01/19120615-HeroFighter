@@ -78,9 +78,9 @@ void Team::luaChon()
 	while (!valid)
 	{
 		menu.inHeader();
-		for (int i = 0; i < Hero::danhSachHero.size(); i++)
+		for (int i = 0; i < Hero::arrDanhSachHero.size(); i++)
 		{
-			cout << i + 1 << ". " << Hero::danhSachHero.at(i) << endl;
+			cout << i + 1 << ". " << Hero::arrDanhSachHero.at(i) << endl;
 		}
 		cout << "Hay nhap 3 con so lien tiep (cach nhau boi 01 dau cach) de chon dong doi cho minh!" << endl;
 		cout << "Nhap: ";
@@ -89,7 +89,7 @@ void Team::luaChon()
 		cin >> x >> y >> z;
 		stdinBufferClear();
 
-		if (max({ x, y, z }) > Hero::danhSachHero.size() || min({ x, y, z }) <= 0)
+		if (max({ x, y, z }) > Hero::arrDanhSachHero.size() || min({ x, y, z }) <= 0)
 		{
 			cout << "Ban da nhap mot so khong hop le. Vui long kiem tra lai!" << endl;
 			valid = false;
@@ -99,7 +99,7 @@ void Team::luaChon()
 			valid = true;
 			for (int i : {x, y, z})
 			{
-				this->themThanhVienMoi(Hero::danhSachHero[i - 1]);
+				this->themThanhVienMoi(Hero::arrDanhSachHero[i - 1]);
 			}
 		}
 	}
@@ -113,7 +113,7 @@ void Team::taoNgauNhien()
 	int i = 0;
 	while (i < 3)
 	{
-		int r = rand() % Hero::danhSachHero.size();
+		int r = rand() % Hero::arrDanhSachHero.size();
 
 		// Nếu chọn rồi thì không chọn lại nữa
 		if (find(daRandomRoi.begin(), daRandomRoi.end(), r) != daRandomRoi.end())
@@ -122,7 +122,7 @@ void Team::taoNgauNhien()
 		}
 		else
 		{
-			string herodata = Hero::danhSachHero.at(i);
+			string herodata = Hero::arrDanhSachHero.at(i);
 			Hero* hero = Hero::taoHeroMoi(herodata);
 			this->arrThanhVien.push_back(hero);
 			i++;
@@ -186,4 +186,101 @@ Team::~Team()
 	for (Hero*& thanhvien : arrThanhVien) {
 		delete thanhvien;
 	}
+}
+
+void Hero::menuQuanLyHero()
+{
+	Menu menu("Quan ly hero");
+
+	menu.themEntryMoi("Them hero", []() {
+		glFlagDSHeroThayDoi = true;
+		cout << "\nHay nhap thong tin cho hero moi theo dinh dang sau:" << endl;
+		cout << "Ten;Thuoc tinh;Mau;Cong;Thu;Toc do" << endl;
+		cout << "Vd: Treant Protector;Wood;700;62;1.5;38" << endl << endl;
+		cout << "Nhap: ";
+
+		string s;
+		getline(cin, s);
+		Hero::arrDanhSachHero.push_back(s);
+
+		cout << "Da them hero vao danh sach." << endl;
+		system("pause");
+	});
+
+	menu.themEntryMoi("Xoa hero", []() {
+		glFlagDSHeroThayDoi = true;
+		cout << "Nhap STT cua hero can xoa trong danh sach tren: ";
+		int i;
+		cin >> i;
+		cin.ignore();
+
+		if (i >= Hero::arrDanhSachHero.size() || i <= 0) {
+			cout << "Ban da nhap mot so khong hop le!" << endl;
+			system("pause");
+			// Thoát khỏi anonymous function này chứ ko thoát khỏi hàm bên ngoài
+			return;
+		}
+
+		string deletedhero = Hero::arrDanhSachHero[--i];
+
+		cout << "\nBan co chac chan muon xoa hero " << deletedhero << "?" << endl;
+		cout << "Nhap [y/n]: ";
+		char c;
+		cin >> c;
+		cin.ignore();
+
+		if (tolower(c) == 'y') {
+			Hero::arrDanhSachHero.erase(Hero::arrDanhSachHero.begin() + i);
+			cout << "Da xoa hero." << endl;
+		}
+		else {
+			cout << "Yeu cau da duoc huy." << endl;
+		}
+		system("pause");
+	});
+
+	menu.themEntryMoi("Sua hero", []() {
+		glFlagDSHeroThayDoi = true;
+		cout << "Nhap STT cua hero can sua trong danh sach tren: ";
+		int i;
+		cin >> i;
+		cin.ignore();
+
+		if (i >= Hero::arrDanhSachHero.size() || i <= 0) {
+			cout << "Ban da nhap mot so khong hop le!" << endl;
+			system("pause");
+			return;
+		}
+
+		cout << "\nHay nhap thong tin cho hero moi theo dinh dang sau:" << endl;
+		cout << "Ten;Thuoc tinh;Mau;Cong;Thu;Toc do" << endl;
+		cout << "Vd: Treant Protector;Wood;700;62;1.5;38" << endl << endl;
+		cout << "Nhap: ";
+		string s;
+		getline(cin, s);
+
+		cout << "\nBan co chac chan muon sua hero sau\n" << Hero::arrDanhSachHero[--i] << "?" << endl;
+		cout << "Nhap [y/n]: ";
+		char c;
+		cin >> c;
+		cin.ignore();
+
+		if (tolower(c) == 'y') {
+			Hero::arrDanhSachHero[i] = s;
+		}
+		else {
+			cout << "Yeu cau da duoc huy." << endl;
+		}
+		system("pause");
+	});
+
+	menu.hienThi([]() {
+		cout << "Danh sach hero:" << endl;
+		cout << "Ten;Thuoc tinh;Mau;Cong;Thu;Toc do" << endl << endl;
+		for (int i = 0; i < Hero::arrDanhSachHero.size(); i++) {
+			cout << i + 1 << ". " << Hero::arrDanhSachHero[i] << endl;
+		}
+		cout << "----------------------------------" << endl;
+		cout << "Hay nhap lua chon trong menu ben duoi:" << endl;
+	});
 }

@@ -20,11 +20,6 @@
 * Hoàn tất debug: --
  
                                     2. VỀ QUY TẮC ĐẶT TÊN
-* Hầu hết các trường hợp em xin thuân thủ theo quy tắc mà thầy đã nêu trong file docx. 
-  Tuy nhiên, em xin bổ sung thêm một số thay đổi tí xíuuu để phù hợp hơn với thói quen code của mình.
-  Em cũng xin phép được CÓ một vài dòng trống để code của mình dễ đọc hơn (vd: giữa 2 phần logic khác nhau),
-  nhưng không quá 2 dòng trống liên tiếp.
-
 * Hầu hết tên biến đều được đặt bằng tiếng Việt, đôi khi sẽ phải viết tắt để tiết kiệm không gian.
   Một số vị trí mà dùng tiếng Việt không được phù hợp lắm thì em xin phép được ghi tiếng Anh.
 * Tất cả các biến toàn cục được đặt theo camelCase nhưng có thêm tiền tố "gl~" (global). Vd: glExample.
@@ -53,7 +48,7 @@
 	* class Team: lớp để quản lí một đội chơi (HAS-A Hero).
 	* class Logging: lớp phát sinh thêm để quản lý logging.
 	* class Menu: một thư viện menu tự chế với khả năng tuỳ biến cao, sử dụng lambda expression 
-	  và con trỏ hàm.
+	  và con trỏ hàm thay vì 1 dãy các if-else như truyền thống.
 	* class MatchManager: tập hợp các hàm static liên quan tới tạo trận đấu.
 	* Module Utils: chứa các hàm tiện ích riêng lẻ.
 */
@@ -63,6 +58,7 @@
 
 Team glTeam1;
 Team glTeam2;
+bool glFlagDSHeroThayDoi = false;
 ifstream Logger::strmLogFile;
 
 int main() 
@@ -79,6 +75,7 @@ int main()
 	// Thêm các trường cho menu chính
 	mainmenu.themEntryMoi("Xem log", Logger::entryHienThiLog);
 	mainmenu.themEntryMoi("Bat dau tran dau", MatchManager::menuTaoTranDau);
+	mainmenu.themEntryMoi("Quan ly hero", Hero::menuQuanLyHero);
 
 	// Show ra màn hình
 	try 
@@ -94,11 +91,21 @@ int main()
 	{
 		cout << "\n\n";
 		Logger::themLog("Da co loi xay ra khi chay chuong trinh: " + string(e.what()));
+		cout << "Vui long kiem tra lai file input (ListHero.txt) xem thu co gi bat thuong khong truoc khi report cho nha phat trien." << endl;
+	}
 
-		system("pause");
-		if (Logger::strmLogFile.is_open()) 
+	system("pause");
+	if (Logger::strmLogFile.is_open())
+	{
+		Logger::strmLogFile.close();
+	}
+
+	// Nếu danh sách hero đã bị thay đổi thì ghi thay đổi đó xuống file (ghi đè)
+	if (glFlagDSHeroThayDoi) {
+		ofstream fout = ofstream("ListHero.txt");
+		for (string line : Hero::arrDanhSachHero)
 		{
-			Logger::strmLogFile.close();
+			fout << line << endl;
 		}
 	}
 	

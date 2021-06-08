@@ -5,7 +5,7 @@
 * và hành động cơ bản của tất cả các hero, không phụ thuộc vào ngũ hệ.
 */
 
-vector<string> Hero::danhSachHero;
+vector<string> Hero::arrDanhSachHero;
 const string glBangTraThuocTinh[] = { KIM, MOC, THUY, HOA, THO };
 
 
@@ -31,7 +31,11 @@ void Hero::napDanhSachHero(string filename)
 		{
 			string line;
 			getline(fin, line);
-			danhSachHero.push_back(line);
+			// Nếu dòng có ít hơn 11 kí tự thì không hợp lệ (5 dấu ; và ít nhất 6 kí tự cho các trường thông tin)
+			if (line.size() <= 10) {
+				continue;
+			}
+			arrDanhSachHero.push_back(line);
 		}
 		fin.close();
 	}

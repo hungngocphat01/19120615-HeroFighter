@@ -28,6 +28,9 @@ extern const string glBangTraThuocTinh[];
 // Thời gian chờ của cả trận đấu
 extern float glThoiGianTranDau;
 
+// Flag để biết danh sách hero đã bị thay đổi 
+extern bool glFlagDSHeroThayDoi;
+
 // Một số alias 
 typedef string attribute_t;
 typedef int result_t;
@@ -52,7 +55,10 @@ public:
 	int iSoDonDanh = 0;
 
 	// Danh sách các hero có thể sử dụng (các dòng đọc lên từ file)
-	static vector<string> danhSachHero;
+	static vector<string> arrDanhSachHero;
+
+	// Menu quản lý (thêm/xoá/sửa) hero
+	static void menuQuanLyHero();
 
 	// Các getter
 	string getTen() const;
