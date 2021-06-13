@@ -1,3 +1,6 @@
+<!--GITHUB LINK: https://github.com/hungngocphat01/19120615-HeroFighter-->
+<!--Private repo, em sẽ public sau khi thầy khoá deadline-->
+
 <div align="center">
 <h2>ĐỒ ÁN CUỐI KỲ</h2>
 <h1>THỰC HÀNH PHƯƠNG PHÁP LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG</h1>
@@ -13,9 +16,23 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
 - Trình biên dịch: Microsoft Visual C++ Compiler (MSCV).
 - Chuẩn ngôn ngữ: MSVC C++14.
 - Ngày bắt đầu: 20/05/2021.
-- Ngày kết thúc: --
+- Ngày kết thúc: 13/06/2021.
 - Hoàn tất debug: --
- 
+- Số lượng dòng code (báo cáo từ lệnh `cloc`):
+  ```
+  -------------------------------------------------------------------------------
+  Language                     files          blank        comment           code
+  -------------------------------------------------------------------------------
+  C++                              8            176            154           1001
+  C/C++ Header                     7             75            106            239
+  -------------------------------------------------------------------------------
+  SUM:                            15            251            260           1240
+  -------------------------------------------------------------------------------
+  ```
+
+- Sơ đồ lớp: 
+![Ảnh sơ đồ lớp](19120615 - Class Diagram.png)
+
 # 2. Về quy tắc đặt tên biến
 - Hầu hết tên biến đều được đặt bằng tiếng Việt, đôi khi sẽ phải viết tắt để tiết kiệm không gian.<br>
   Một số vị trí mà dùng tiếng Việt không được phù hợp lắm thì em xin phép được ghi tiếng Anh.
@@ -48,4 +65,4 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
 - `Module Utils`: chứa các hàm tiện ích riêng lẻ.
 
 # 4. Build và chạy
-= Import project vào Visual Studio và build như bình thường.
+- Import project vào Visual Studio và build như bình thường.
