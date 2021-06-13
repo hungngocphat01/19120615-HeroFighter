@@ -31,7 +31,9 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
   ```
 
 - Sơ đồ lớp: 
-![Ảnh sơ đồ lớp](19120615 - Class Diagram.png)
+<center>
+ <img src="19120615 - Class Diagram.png">
+</center>
 
 # 2. Về quy tắc đặt tên biến
 - Hầu hết tên biến đều được đặt bằng tiếng Việt, đôi khi sẽ phải viết tắt để tiết kiệm không gian.<br>
