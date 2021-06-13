@@ -2,7 +2,6 @@
 #include "Logging.h"
 #include "Team.h"
 #include "Menu.h"
-#include "Logging.h"
 
 /*
 * File khai báo các đoạn code sẽ được thực thi trong 
@@ -21,5 +20,6 @@ private:
 	static void batDauTranDau();
 public:
 	// Khi user chọn bắt đầu trận đấu từ main menu
+	// Các hàm trên không được gọi tuỳ tiện mà phải thông qua interface là menu này
 	static void menuTaoTranDau();
 };

@@ -71,13 +71,13 @@ int Team::soLuongThanhVien()
 	return this->arrThanhVien.size();
 }
 
-void Team::luaChon()
+void Team::menuLuaChon()
 {
 	Menu menu("Lua chon thanh vien cho " + this->strTenDoiChoi);
 	bool valid = false;
 	while (!valid)
 	{
-		menu.inHeader();
+		menu.hienthiHeader();
 		for (int i = 0; i < Hero::arrDanhSachHero.size(); i++)
 		{
 			cout << i + 1 << ". " << Hero::arrDanhSachHero.at(i) << endl;
@@ -196,7 +196,8 @@ void Hero::menuQuanLyHero()
 		glFlagDSHeroThayDoi = true;
 		cout << "\nHay nhap thong tin cho hero moi theo dinh dang sau:" << endl;
 		cout << "Ten;Thuoc tinh;Mau;Cong;Thu;Toc do" << endl;
-		cout << "Vd: Treant Protector;Wood;700;62;1.5;38" << endl << endl;
+		cout << "Vd: Treant Protector;Wood;700;62;1.5;38" << endl;
+		cout << "Luu y: neu ban nhap sai, chuong trinh se khong the tao duoc hero do. Hay kiem tra ky truoc khi ENTER." << endl << endl;
 		cout << "Nhap: ";
 
 		string s;
@@ -212,7 +213,7 @@ void Hero::menuQuanLyHero()
 		cout << "Nhap STT cua hero can xoa trong danh sach tren: ";
 		int i;
 		cin >> i;
-		cin.ignore();
+		stdinBufferClear();
 
 		if (i >= Hero::arrDanhSachHero.size() || i <= 0) {
 			cout << "Ban da nhap mot so khong hop le!" << endl;
@@ -227,7 +228,7 @@ void Hero::menuQuanLyHero()
 		cout << "Nhap [y/n]: ";
 		char c;
 		cin >> c;
-		cin.ignore();
+		stdinBufferClear();
 
 		if (tolower(c) == 'y') {
 			Hero::arrDanhSachHero.erase(Hero::arrDanhSachHero.begin() + i);
@@ -244,7 +245,7 @@ void Hero::menuQuanLyHero()
 		cout << "Nhap STT cua hero can sua trong danh sach tren: ";
 		int i;
 		cin >> i;
-		cin.ignore();
+		stdinBufferClear();
 
 		if (i >= Hero::arrDanhSachHero.size() || i <= 0) {
 			cout << "Ban da nhap mot so khong hop le!" << endl;
@@ -255,6 +256,7 @@ void Hero::menuQuanLyHero()
 		cout << "\nHay nhap thong tin cho hero moi theo dinh dang sau:" << endl;
 		cout << "Ten;Thuoc tinh;Mau;Cong;Thu;Toc do" << endl;
 		cout << "Vd: Treant Protector;Wood;700;62;1.5;38" << endl << endl;
+		cout << "Luu y: neu ban nhap sai, chuong trinh se khong the tao duoc hero do. Hay kiem tra ky truoc khi ENTER." << endl << endl;
 		cout << "Nhap: ";
 		string s;
 		getline(cin, s);
@@ -263,7 +265,7 @@ void Hero::menuQuanLyHero()
 		cout << "Nhap [y/n]: ";
 		char c;
 		cin >> c;
-		cin.ignore();
+		stdinBufferClear();
 
 		if (tolower(c) == 'y') {
 			Hero::arrDanhSachHero[i] = s;

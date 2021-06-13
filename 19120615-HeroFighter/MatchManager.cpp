@@ -28,14 +28,14 @@ void MatchManager::entryDauVoiUser()
 
 	try
 	{
-		menu.inHeader();
+		menu.hienthiHeader();
 
 		cout << "Nhap ten cho user 2: ";
 		getline(cin, glTeam2.strTenDoiChoi);
 
 		// Cho user chọn team
-		glTeam1.luaChon();
-		glTeam2.luaChon();
+		glTeam1.menuLuaChon();
+		glTeam2.menuLuaChon();
 
 		// Cho user chọn thời gian
 		cout << "Nhap thoi gian [1/2/5] don vi tran dau: ";
@@ -64,9 +64,9 @@ void MatchManager::entryDauVoiNPC()
 
 	try
 	{
-		menu.inHeader();
+		menu.hienthiHeader();
 		// Cho user chọn team
-		glTeam1.luaChon();
+		glTeam1.menuLuaChon();
 		// Tạo ngẫu nhiên một team cho NPC
 		glTeam2.taoNgauNhien();
 
@@ -78,7 +78,7 @@ void MatchManager::entryDauVoiNPC()
 		glThoiGianTranDau = 1 * HeSoDonViThoiGian;
 
 		system("cls");
-		menu.inHeader();
+		menu.hienthiHeader();
 
 		// Bắt đầu đấu
 		batDauTranDau();
@@ -93,8 +93,13 @@ void MatchManager::batDauTranDau()
 {
 	try
 	{
+		Logger::ghiThoiGian();
+		Logger::ghiTenDoiChoi(glTeam1.strTenDoiChoi, glTeam2.strTenDoiChoi);
+		Logger::ghiLucLuong(1, glTeam1);
+		Logger::ghiLucLuong(2, glTeam2);
+
 		Menu menu("Bat dau tran dau");
-		menu.inHeader();
+		menu.hienthiHeader();
 
 		attribute_t moitruong = glBangTraThuocTinh[rand() % 5];
 		glTeam1.capNhatMoiTruong(moitruong);
@@ -116,19 +121,21 @@ void MatchManager::batDauTranDau()
 		}
 
 		system("cls");
-		menu.inHeader();
+		menu.hienthiHeader();
 
 		result_t kq = glTeam1.batDauDauVoi(glTeam2);
 
 		system("cls");
-		menu.inHeader();
+		menu.hienthiHeader();
 		if (kq == THANG)
 		{
 			cout << glTeam1.strTenDoiChoi;
+			Logger::ghiKetQua(1);
 		}
 		else if (kq == THUA)
 		{
 			cout << glTeam2.strTenDoiChoi;
+			Logger::ghiKetQua(2);
 		}
 		if (kq != HUE)
 		{
@@ -137,11 +144,13 @@ void MatchManager::batDauTranDau()
 		else
 		{
 			cout << "Vay la ca 2 doi hoa nhau!" << endl;
+			Logger::ghiKetQua(0);
 		}
 
 		cout << "\nCac thong so con lai nhu sau:" << endl;
 		glTeam1.hienThiKetQua();
 		glTeam2.hienThiKetQua();
+		Logger::commit();
 
 		if (glThoiGianTranDau > 0)
 		{

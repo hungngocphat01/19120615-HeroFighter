@@ -13,6 +13,7 @@
 
 class Team
 {
+	friend class Logger;
 private:
 	vector<Hero*> arrThanhVien;
 public:
@@ -38,7 +39,7 @@ public:
 	int soLuongThanhVien();
 
 	// Hiển thị menu cho user lựa chọn thành viên
-	void luaChon();
+	void menuLuaChon();
 
 	// Tạo một team ngẫu nhiên cho NPC
 	void taoNgauNhien();

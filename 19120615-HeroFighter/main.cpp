@@ -1,6 +1,4 @@
-﻿// Dưới đây là một số thông tin chung về đồ án này. 
-// Thầy có thể nhấn vào dấu (+) ở đầu hàng CHUTHICH để xem qua nội dung ạ.
-#pragma region CHUTHICH
+﻿#pragma region CHUTHICH
 /*
  										ĐỒ ÁN CUỐI KỲ
  						THỰC HÀNH PHƯƠNG PHÁP LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG
@@ -16,7 +14,7 @@
 * Chuẩn ngôn ngữ: MSVC C++14.
 
 * Ngày bắt đầu: 20/05/2021.
-* Ngày kết thúc: --
+* Ngày kết thúc: 13/06/2021
 * Hoàn tất debug: --
  
                                     2. VỀ QUY TẮC ĐẶT TÊN
@@ -59,7 +57,7 @@
 Team glTeam1;
 Team glTeam2;
 bool glFlagDSHeroThayDoi = false;
-ifstream Logger::strmLogFile;
+string Logger::strLogFileName;
 
 int main() 
 {
@@ -67,7 +65,7 @@ int main()
 	// Tạo layout cho menu chính
 	Menu mainmenu = Menu("Menu chinh");
 	// Hiển thị layout và hỏi tên người chơi
-	mainmenu.inHeader();
+	mainmenu.hienthiHeader();
 	cout << "Nhap ten user 1: ";
 	getline(cin, glTeam1.strTenDoiChoi);
 	system("cls");
@@ -80,8 +78,8 @@ int main()
 	// Show ra màn hình
 	try 
 	{
+		Logger::strLogFileName = "HeroFighterLog.txt";
 		Hero::napDanhSachHero("ListHero.txt");
-		Logger::strmLogFile.open("HeroFighterLog.txt");
 		mainmenu.hienThi([] () 
 		{
 			cout << "Xin chao, " << glTeam1.strTenDoiChoi << endl << endl;
@@ -90,17 +88,13 @@ int main()
 	catch (exception& e) 
 	{
 		cout << "\n\n";
-		Logger::themLog("Da co loi xay ra khi chay chuong trinh: " + string(e.what()));
+		cout << "Da co loi xay ra khi chay chuong trinh: " + string(e.what()) << endl;
 		cout << "Vui long kiem tra lai file input (ListHero.txt) xem thu co gi bat thuong khong truoc khi report cho nha phat trien." << endl;
 	}
 
 	system("pause");
-	if (Logger::strmLogFile.is_open())
-	{
-		Logger::strmLogFile.close();
-	}
 
-	// Nếu danh sách hero đã bị thay đổi thì ghi thay đổi đó xuống file (ghi đè)
+	// Nếu danh sách hero đã bị thay đổi thì ghi thay đổi đó xuống file (ghi đè toàn bộ danh sách)
 	if (glFlagDSHeroThayDoi) {
 		ofstream fout = ofstream("ListHero.txt");
 		for (string line : Hero::arrDanhSachHero)

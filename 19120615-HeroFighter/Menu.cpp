@@ -28,7 +28,7 @@ void Menu::hienThi(vfuncptr_t customfunc)
 	{
 		while (true)
 		{
-			inHeader();
+			hienthiHeader();
 
 			if (customfunc != nullptr) 
 			{
@@ -66,7 +66,7 @@ void Menu::hienThi(vfuncptr_t customfunc)
 	}
 }
 
-void Menu::inHeader()
+void Menu::hienthiHeader()
 {
 	if (blXoaManHinh)
 	{

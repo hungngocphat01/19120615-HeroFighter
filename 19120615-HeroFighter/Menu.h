@@ -47,5 +47,5 @@ public:
 	void hienThi(vfuncptr_t custom = nullptr);
 
 	// In ra header của menu
-	void inHeader();
+	void hienthiHeader();
 };

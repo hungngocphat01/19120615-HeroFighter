@@ -31,11 +31,15 @@ static vector<string> splitString(string str, char dlmtr)
 	return result;
 }
 
+// Hàm tạm dừng chương trình trong 1 khoảng thời gian
 inline void sleep(int milisec)
 {
 	this_thread::sleep_for(std::chrono::milliseconds(milisec));
 }
 
+// Cách viết gọn hơn cho cin.ignore(...);
+// Cần phải có 2 tham số để bỏ qua các số mà người dùng nhập dư (vd: chương trình yêu cầu nhập 1 số mà 
+// người dùng nhập 2 số. Số bị dư sẽ trở thành input cho menu kế tiếp, rất nguy hiểm).
 inline void stdinBufferClear()
 {
 	cin.ignore(INT_MAX, '\n');

@@ -64,5 +64,8 @@
     <Text Include="ListHero.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="HeroFighterLog.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
