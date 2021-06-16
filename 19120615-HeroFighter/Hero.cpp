@@ -8,7 +8,6 @@
 vector<string> Hero::arrDanhSachHero;
 const string glBangTraThuocTinh[] = { KIM, MOC, THUY, HOA, THO };
 
-
 // Hệ số thủ của đối phương bị giảm khi đối thủ bị khắc (conquered enemy def factor)
 constexpr float HeSoThuKhiDthBiKhac = 0.5F;
 // Hệ số công của hero đánh được tăng khi đối thủ bị khắc (conquered enemy my atk factor)
@@ -20,6 +19,7 @@ constexpr float HeSoMauKhiDcDgDoiSinh = 1.15F;
 
 float glThoiGianTranDau = 0;
 
+// Nạp danh sách hero từ file (chỉ nạp và lưu trữ chuỗi, không phân tích)
 void Hero::napDanhSachHero(string filename)
 {
 	ifstream fin;
@@ -31,7 +31,7 @@ void Hero::napDanhSachHero(string filename)
 		{
 			string line;
 			getline(fin, line);
-			// Nếu dòng có ít hơn 11 kí tự thì không hợp lệ (5 dấu ; và ít nhất 6 kí tự cho các trường thông tin)
+			// Nếu dòng có ít hơn 11 kí tự thì không hợp lệ, bỏ qua (5 dấu ; và ít nhất 6 kí tự cho các trường thông tin)
 			if (line.size() <= 10) {
 				continue;
 			}
@@ -44,6 +44,7 @@ void Hero::napDanhSachHero(string filename)
 	}
 }
 
+// Constructor
 Hero::Hero(string name, float hp, float atk, float def, float spd)
 {
 	sTen = name;
@@ -53,7 +54,9 @@ Hero::Hero(string name, float hp, float atk, float def, float spd)
 	fTocDo = spd;
 }
 
-result_t Hero::batDauDanh(Hero& enemy)
+// Bắt đầu trận đấu giữa this và 1 hero khác.
+// Trả về: THANG, THUA, HUE
+result_t Hero::batDauDanh(Hero* enemy)
 {
 	/*
 		- Ai có thời gian chờ = 0 được đánh trước.
@@ -64,35 +67,36 @@ result_t Hero::batDauDanh(Hero& enemy)
 	*/
 
 	// Thực hiện đánh tới khi nào một trong 2 thua (máu <= 0)
-	while (this->fMau * enemy.fMau > 0 && glThoiGianTranDau > 0) {
+	while (this->fMau * enemy->fMau > 0 && glThoiGianTranDau > 0) {
 		// Ai có thời gian chờ = 0 được đánh trước
 		// Bằng nhau thì pick random
 		
-		if (this->fThGianCho == 0 && enemy.fThGianCho == 0) {
+		if (this->fThGianCho == 0 && enemy->fThGianCho == 0) {
 			int r = rand() % 2 + 1;
 			if (r == 1) {
 				this->TanCong(enemy);
 			}
 			else {
-				enemy.TanCong(*this);
+				enemy->TanCong(this);
 			}
 		}
 		else if (this->fThGianCho <= 0) {
 			this->TanCong(enemy);
 		}
-		else if (enemy.fThGianCho <= 0) {
-			enemy.TanCong(*this);
+		else if (enemy->fThGianCho <= 0) {
+			enemy->TanCong(this);
 		}
 
 		glThoiGianTranDau--;
 		this->fThGianCho--;
-		enemy.fThGianCho--;
+		enemy->fThGianCho--;
 	}
 
+	// Nếu máu <= 0 thì xem là thua (máu được phép âm để người dùng thấy được mình bị hụt bao nhiêu máu)
 	if (this->fMau <= 0) {
 		return THUA;
 	}
-	else if (enemy.fMau <= 0) {
+	else if (enemy->fMau <= 0) {
 		return THANG;
 	}
 	else
@@ -101,28 +105,34 @@ result_t Hero::batDauDanh(Hero& enemy)
 	}
 }
 
-void Hero::capNhtThgSoKhiDoiPhBiKhac(Hero& h1, Hero& h2)
+// Cập nhật thông số khi đối phương bị khắc
+void Hero::capNhtThgSoKhiDoiPhBiKhac(Hero* h1, Hero* h2)
 {
-	h2.fThu *= HeSoThuKhiDthBiKhac;
-	h1.fCong *= HeSoCngKhiDthBiKhac;
+	h2->fThu *= HeSoThuKhiDthBiKhac;
+	h1->fCong *= HeSoCngKhiDthBiKhac;
 }
 
+// Cập nhật thông số khi bị đồng đội khắc
 void Hero::capNhtThgSoKhiBiDngDoiKhac()
 {
 	this->fTocDo *= HeSoTdoKhiBiDgDoiKhac;
 }
 
+// Cập nhật thông số khi được đồng đội sinh
 void Hero::capNhtThgSoKhiDcDngDoiSinh()
 {
 	this->fMau *= HeSoMauKhiDcDgDoiSinh;
 }
 
-void Hero::TanCong(Hero& enemy)
+// Tấn công (private, chỉ có thể được gọi từ interface là batDauDanh)
+void Hero::TanCong(Hero* enemy)
 {
-	enemy.fMau -= (this->fCong - enemy.fThu);
+	enemy->fMau -= (this->fCong - enemy->fThu);
 	this->fThGianCho = this->fTocDo;
 	this->iSoDonDanh++;
 }
+
+// Các getter 
 
 string Hero::getTen() const
 {

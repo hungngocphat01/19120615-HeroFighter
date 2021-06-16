@@ -54,10 +54,11 @@
 
 #include "MatchManager.h"
 
-Team glTeam1;
-Team glTeam2;
+Team* glTeam1;
+Team* glTeam2;
 bool glFlagDSHeroThayDoi = false;
 string Logger::strLogFileName;
+string glUsername;
 
 int main() 
 {
@@ -66,8 +67,8 @@ int main()
 	Menu mainmenu = Menu("Menu chinh");
 	// Hiển thị layout và hỏi tên người chơi
 	mainmenu.hienthiHeader();
-	cout << "Nhap ten user 1: ";
-	getline(cin, glTeam1.strTenDoiChoi);
+	cout << "Hay nhap ten cho nguoi choi 1: ";
+	getline(cin, glUsername);
 	system("cls");
 	
 	// Thêm các trường cho menu chính
@@ -80,9 +81,8 @@ int main()
 	{
 		Logger::strLogFileName = "HeroFighterLog.txt";
 		Hero::napDanhSachHero("ListHero.txt");
-		mainmenu.hienThi([] () 
-		{
-			cout << "Xin chao, " << glTeam1.strTenDoiChoi << endl << endl;
+		mainmenu.hienThi([]() {
+			cout << "Xin chao, " << glUsername << endl << endl;
 		});
 	}
 	catch (exception& e) 
@@ -95,13 +95,17 @@ int main()
 	system("pause");
 
 	// Nếu danh sách hero đã bị thay đổi thì ghi thay đổi đó xuống file (ghi đè toàn bộ danh sách)
-	if (glFlagDSHeroThayDoi) {
+	if (glFlagDSHeroThayDoi) 
+	{
 		ofstream fout = ofstream("ListHero.txt");
 		for (string line : Hero::arrDanhSachHero)
 		{
 			fout << line << endl;
 		}
 	}
-	
+
+	mfree(glTeam1);
+	mfree(glTeam2);
+
 	return 0;
 }

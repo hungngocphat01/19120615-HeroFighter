@@ -55,7 +55,7 @@ public:
 
 	static void ghiThoiGian();
 	static void ghiTenDoiChoi(string, string);
-	static void ghiLucLuong(int, Team&);
+	static void ghiLucLuong(int, Team*);
 	static void ghiKetQua(int);
 
 	static void commit();

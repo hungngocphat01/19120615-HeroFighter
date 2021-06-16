@@ -26,11 +26,11 @@ void Logger::ghiTenDoiChoi(string team1, string team2)
 }
 
 // Ghi lực lượng của 2 đội ra log
-void Logger::ghiLucLuong(int teamnum, Team& team)
+void Logger::ghiLucLuong(int teamnum, Team* team)
 {
 	vector<string> lucluong;
 
-	for (Hero* h : team.arrThanhVien)
+	for (Hero* h : team->arrThanhVien)
 	{
 		string hs;
 		hs += h->getTen() + ";";
@@ -108,8 +108,8 @@ void Logger::entryHienThiLog()
 	{
 		if (lg.iday == d && lg.imonth == m && lg.iyear == y)
 		{
-			lg.print();
 			cout << "-----------------------------" << endl;
+			lg.print();
 			found = true;
 		}
 	}
@@ -134,7 +134,7 @@ void LogEntry::print()
 		cout << s << endl;
 
 	}
-	cout << "\nTeam 1: " << strTen2 << endl;
+	cout << "\nTeam 2: " << strTen2 << endl;
 	cout << "Ten;He;Mau;Cong;Thu;T.do" << endl;
 	for (string s : arrLucLuongTeam2)
 	{
@@ -146,7 +146,8 @@ void LogEntry::print()
 	{
 		cout << "2 ben hoa nhau" << endl;
 	}
-	else {
+	else
+	{
 		cout << "Nguoi thang cuoc: " << iNguoiThangCuoc << endl;
 	}
 }

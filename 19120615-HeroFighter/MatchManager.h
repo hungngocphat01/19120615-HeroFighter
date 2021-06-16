@@ -8,6 +8,7 @@
 * các menu khi entry tương ứng được chọn.
 */
 
+extern string glUsername;
 
 class MatchManager
 {

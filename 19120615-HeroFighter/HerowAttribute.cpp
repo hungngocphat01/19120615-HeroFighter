@@ -11,51 +11,51 @@
 // Các hàm batDauDanh được override này sẽ thực hiện việc trừ điểm 
 // của đối phương nếu tương khắc sau đó sẽ gọi lại hàm đánh của lớp cha
 
-result_t HeroMetal::batDauDanh(Hero& doithu)
+result_t HeroMetal::batDauDanh(Hero* doithu)
 {
     // Kim khắc mộc
-    if (doithu.thuocTinh() == MOC) {
-        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
+    if (doithu->thuocTinh() == MOC) {
+        capNhtThgSoKhiDoiPhBiKhac(this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
     return Hero::batDauDanh(doithu);
 }
 
-result_t HeroWood::batDauDanh(Hero& doithu)
+result_t HeroWood::batDauDanh(Hero* doithu)
 {
     // Mộc khắc thổ
-    if (doithu.thuocTinh() == THO) {
-        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
+    if (doithu->thuocTinh() == THO) {
+        capNhtThgSoKhiDoiPhBiKhac(this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
     return Hero::batDauDanh(doithu);
 }
 
-result_t HeroEarth::batDauDanh(Hero& doithu)
+result_t HeroEarth::batDauDanh(Hero* doithu)
 {
     // Thổ khắc thuỷ
-    if (doithu.thuocTinh() == THUY) {
-        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
+    if (doithu->thuocTinh() == THUY) {
+        capNhtThgSoKhiDoiPhBiKhac(this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
     return Hero::batDauDanh(doithu);
 }
 
-result_t HeroWater::batDauDanh(Hero& doithu)
+result_t HeroWater::batDauDanh(Hero* doithu)
 {
     // Thuỷ khắc hoả
-    if (doithu.thuocTinh() == HOA) {
-        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
+    if (doithu->thuocTinh() == HOA) {
+        capNhtThgSoKhiDoiPhBiKhac(this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
     return Hero::batDauDanh(doithu);
 }   
 
-result_t HeroFire::batDauDanh(Hero& doithu)
+result_t HeroFire::batDauDanh(Hero* doithu)
 {
     // Hoả khắc kim
-    if (doithu.thuocTinh() == KIM) {
-        capNhtThgSoKhiDoiPhBiKhac(*this, doithu);
+    if (doithu->thuocTinh() == KIM) {
+        capNhtThgSoKhiDoiPhBiKhac(this, doithu);
     }
     // Gọi lại hàm đánh của lớp cha
     return Hero::batDauDanh(doithu);
@@ -175,107 +175,107 @@ void HeroEarth::capNhtThgSoTheoMoiTrg(attribute_t moitruong)
 
 /*************** KHU VỰC IMPLEMENT HÀM capNhtThgSoTrongTeam ***************/
 
-void HeroMetal::capNhtThgSoTrongTeam(Hero& dgdoi)
+void HeroMetal::capNhtThgSoTrongTeam(Hero* dgdoi)
 {
     // Kim sinh thuỷ
-    if (dgdoi.thuocTinh() == THUY) {
-        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
+    if (dgdoi->thuocTinh() == THUY) {
+        dgdoi->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Kim khắc mộc
-    else if (dgdoi.thuocTinh() == MOC) {
-        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
+    else if (dgdoi->thuocTinh() == MOC) {
+        dgdoi->capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // Thổ sinh kim
-    if (dgdoi.thuocTinh() == THO) {
+    if (dgdoi->thuocTinh() == THO) {
         this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Hoả khắc kim
-    else if (dgdoi.thuocTinh() == HOA) {
+    else if (dgdoi->thuocTinh() == HOA) {
         this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
 
-void HeroWater::capNhtThgSoTrongTeam(Hero& dgdoi)
+void HeroWater::capNhtThgSoTrongTeam(Hero* dgdoi)
 {
     // Thuỷ sinh mộc
-    if (dgdoi.thuocTinh() == MOC) {
-        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
+    if (dgdoi->thuocTinh() == MOC) {
+        dgdoi->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Thuỷ khắc hoả
-    else if (dgdoi.thuocTinh() == HOA) {
-        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
+    else if (dgdoi->thuocTinh() == HOA) {
+        dgdoi->capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // Kim sinh thuỷ
-    if (dgdoi.thuocTinh() == KIM) {
+    if (dgdoi->thuocTinh() == KIM) {
         this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Thổ khắc thuỷ
-    else if (dgdoi.thuocTinh() == THO) {
+    else if (dgdoi->thuocTinh() == THO) {
         this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
 
-void HeroWood::capNhtThgSoTrongTeam(Hero& dgdoi)
+void HeroWood::capNhtThgSoTrongTeam(Hero* dgdoi)
 {
     // Mộc sinh hoả
-    if (dgdoi.thuocTinh() == HOA) {
-        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
+    if (dgdoi->thuocTinh() == HOA) {
+        dgdoi->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Mộc khắc thổ
-    else if (dgdoi.thuocTinh() == THO) {
-        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
+    else if (dgdoi->thuocTinh() == THO) {
+        dgdoi->capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // thuỷ sinh Mộc
-    if (dgdoi.thuocTinh() == THUY) {
+    if (dgdoi->thuocTinh() == THUY) {
         this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Kim khắc Mộc
-    else if (dgdoi.thuocTinh() == KIM) {
+    else if (dgdoi->thuocTinh() == KIM) {
         this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
 
-void HeroFire::capNhtThgSoTrongTeam(Hero& dgdoi)
+void HeroFire::capNhtThgSoTrongTeam(Hero* dgdoi)
 {
     // Hoả sinh thổ
-    if (dgdoi.thuocTinh() == THO) {
-        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
+    if (dgdoi->thuocTinh() == THO) {
+        dgdoi->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Hoả khắc kim
-    else if (dgdoi.thuocTinh() == KIM) {
-        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
+    else if (dgdoi->thuocTinh() == KIM) {
+        dgdoi->capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // Mộc sinh hoả
-    if (dgdoi.thuocTinh() == MOC) {
+    if (dgdoi->thuocTinh() == MOC) {
         this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Thuỷ khắc hoả
-    else if (dgdoi.thuocTinh() == THUY) {
+    else if (dgdoi->thuocTinh() == THUY) {
         this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }
 
-void HeroEarth::capNhtThgSoTrongTeam(Hero& dgdoi)
+void HeroEarth::capNhtThgSoTrongTeam(Hero* dgdoi)
 {
     // Thổ sinh kim
-    if (dgdoi.thuocTinh() == KIM) {
-        dgdoi.capNhtThgSoKhiDcDngDoiSinh();
+    if (dgdoi->thuocTinh() == KIM) {
+        dgdoi->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Thổ khắc thuỷ
-    else if (dgdoi.thuocTinh() == THUY) {
-        dgdoi.capNhtThgSoKhiBiDngDoiKhac();
+    else if (dgdoi->thuocTinh() == THUY) {
+        dgdoi->capNhtThgSoKhiBiDngDoiKhac();
     }
 
     // Hoả sinh thổ
-    if (dgdoi.thuocTinh() == HOA) {
+    if (dgdoi->thuocTinh() == HOA) {
         this->capNhtThgSoKhiDcDngDoiSinh();
     }
     // Mộc khắc thổ
-    else if (dgdoi.thuocTinh() == MOC) {
+    else if (dgdoi->thuocTinh() == MOC) {
         this->capNhtThgSoKhiBiDngDoiKhac();
     }
 }

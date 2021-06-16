@@ -1,5 +1,6 @@
 ﻿#include "Team.h"
 
+// Constructor
 Team::Team(string ten)
 {
 	this->strTenDoiChoi = ten;
@@ -10,17 +11,19 @@ Team::Team()
 	strTenDoiChoi = "";
 }
 
+// Thêm thành viên mới vào đội (phân tích chuỗi nạp từ file và tạo hero tương ứng)
 void Team::themThanhVienMoi(string hero)
 {
 	Hero* newhero = Hero::taoHeroMoi(hero);
 
 	// Cập nhật lại điểm số cho từng cặp hero mỗi khi thêm vào
 	for (Hero*& member : arrThanhVien) {
-		newhero->capNhtThgSoTrongTeam(*member);
+		newhero->capNhtThgSoTrongTeam(member);
 	}
 	arrThanhVien.push_back(newhero);
 }
 
+// Cập nhật thông số dựa theo môi trường cho các thành viên của đội
 void Team::capNhatMoiTruong(attribute_t mtr)
 {
 	for (Hero*& member : arrThanhVien) {
@@ -28,6 +31,7 @@ void Team::capNhatMoiTruong(attribute_t mtr)
 	}
 }
 
+// Hiển thị toàn bộ lực lượng của đội dưới dạng bảng
 void Team::hienThiLucLuong()
 {
 	cout << "Luc luong cua " << this->strTenDoiChoi << ":" << endl;
@@ -49,6 +53,7 @@ void Team::hienThiLucLuong()
 	}
 }
 
+// Hiển thị kết quả sau khi đánh
 void Team::hienThiKetQua()
 {
 	cout << "Luc luong cua " << this->strTenDoiChoi << ":" << endl;
@@ -66,12 +71,14 @@ void Team::hienThiKetQua()
 	}
 }
 
+// Lấy số lượng thành viên của đội
 int Team::soLuongThanhVien()
 {
 	return this->arrThanhVien.size();
 }
 
-void Team::menuLuaChon()
+// Hàm chứa menu để chọn thành viên cho đội người chơi
+void TeamHuman::luaChonThanhVien()
 {
 	Menu menu("Lua chon thanh vien cho " + this->strTenDoiChoi);
 	bool valid = false;
@@ -105,37 +112,7 @@ void Team::menuLuaChon()
 	}
 }
 
-void Team::taoNgauNhien()
-{
-	// Những số đã random rồi, không random lại
-	vector<int> daRandomRoi;
-
-	int i = 0;
-	while (i < 3)
-	{
-		int r = rand() % Hero::arrDanhSachHero.size();
-
-		// Nếu chọn rồi thì không chọn lại nữa
-		if (find(daRandomRoi.begin(), daRandomRoi.end(), r) != daRandomRoi.end())
-		{
-			continue;
-		}
-		else
-		{
-			string herodata = Hero::arrDanhSachHero.at(i);
-			Hero* hero = Hero::taoHeroMoi(herodata);
-			this->arrThanhVien.push_back(hero);
-			i++;
-		}
-	}
-}
-
-void Team::xoa()
-{
-	this->arrThanhVien.clear();
-}
-
-result_t Team::batDauDauVoi(Team& doithu)
+result_t Team::batDauDauVoi(Team* doithu)
 {
 	// Bắt đầu cho đấu theo từng cặp
 	int thangCount = 0;
@@ -144,10 +121,10 @@ result_t Team::batDauDauVoi(Team& doithu)
 	for (int i = 0; i < 3; i++)
 	{
 		Hero* h1 = this->arrThanhVien[i];
-		Hero* h2 = doithu.arrThanhVien[i];
+		Hero* h2 = doithu->arrThanhVien[i];
 		cout << "Cap thu " << i + 1 << ": " << h1->getTen() << " vs " << h2->getTen() << "!" << endl;
 		sleep(2000);
-		result_t kq = h1->batDauDanh(*h2);
+		result_t kq = h1->batDauDanh(h2);
 
 		switch (kq)
 		{
@@ -285,4 +262,30 @@ void Hero::menuQuanLyHero()
 		cout << "----------------------------------" << endl;
 		cout << "Hay nhap lua chon trong menu ben duoi:" << endl;
 	});
+}
+
+// Đối với team của NPC, các thành viên sẽ được lựa chọn một cách ngẫu nhiên
+void TeamNPC::luaChonThanhVien()
+{
+	// Những số đã random rồi, không random lại
+	vector<int> daRandomRoi;
+
+	int i = 0;
+	while (i < 3)
+	{
+		int r = rand() % Hero::arrDanhSachHero.size();
+
+		// Nếu chọn rồi thì không chọn lại nữa
+		if (find(daRandomRoi.begin(), daRandomRoi.end(), r) != daRandomRoi.end())
+		{
+			continue;
+		}
+		else
+		{
+			string herodata = Hero::arrDanhSachHero.at(i);
+			Hero* hero = Hero::taoHeroMoi(herodata);
+			this->arrThanhVien.push_back(hero);
+			i++;
+		}
+	}
 }

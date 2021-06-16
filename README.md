@@ -6,7 +6,7 @@
 <h1>THỰC HÀNH PHƯƠNG PHÁP LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG</h1>
 LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021 
 </div>
- 
+
 # 1. Thông tin chung
 - Mô phỏng game HeroFighter trên console.
 - Sinh viên thực hiện: HÙNG NGỌC PHÁT -- 19120615.
@@ -29,11 +29,6 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
   SUM:                            15            251            260           1240
   -------------------------------------------------------------------------------
   ```
-
-- Sơ đồ lớp: 
-<div align="center">
- <img src="19120615 - Class Diagram.png">
-</div>
 
 # 2. Về quy tắc đặt tên biến
 - Hầu hết tên biến đều được đặt bằng tiếng Việt, đôi khi sẽ phải viết tắt để tiết kiệm không gian.<br>
@@ -58,13 +53,16 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
 
 # 3. Danh sách các module/class được implement
 Ở đây em chỉ liệt kê và ghi vắn tắt công dụng của các module/class được nêu. Cụ thể hơn thì thầy vui lòng đọc comment được ghi ở đầu mỗi module.
-- `class Hero`: lớp trừu tượng biểu diễn các thông tin chung nhất của các hero.
+- `class Hero`: lớp trừu tượng biểu diễn các thông tin chung nhất của các hero. Ngoài ra còn chứa các hàm static liên quan tới tạo và quản lý hero.
 - `class HeroFire, HeroMetal, ...`: các lớp cụ thể cho từng hệ hero. (IS-A Hero).
 - `class Team`: lớp để quản lí một đội chơi (HAS-A Hero).
-- `class Logging`: lớp phát sinh thêm để quản lý logging.
-- `class Menu`: một thư viện menu tự chế với khả năng tuỳ biến cao, sử dụng lambda expression và con trỏ hàm thay vì 1 dãy các if-else như truyền thống.
+- `class LogEntry, class Logger`: các lớp phát sinh thêm để đọc/ghi và format log.
+- `class Menu`: một thư viện menu tự chế với khả năng tuỳ biến cao, sử dụng lambda expression và con trỏ hàm thay vì 1 dãy các `if`-`else` như truyền thống.
 - `class MatchManager`: tập hợp các hàm static liên quan tới tạo trận đấu.
-- `Module Utils`: chứa các hàm tiện ích riêng lẻ.
+- `Utils.h`: chứa các hàm tiện ích riêng lẻ (không nằm trong class nào).
 
+<div align="center">
+ <img src="19120615 - Class Diagram.png">
+</div>
 # 4. Build và chạy
 - Import project vào Visual Studio và build như bình thường.

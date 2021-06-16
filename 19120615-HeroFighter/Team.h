@@ -14,7 +14,7 @@
 class Team
 {
 	friend class Logger;
-private:
+protected:
 	vector<Hero*> arrThanhVien;
 public:
 	Team(string ten);
@@ -38,23 +38,29 @@ public:
 	// Số thành viên
 	int soLuongThanhVien();
 
-	// Hiển thị menu cho user lựa chọn thành viên
-	void menuLuaChon();
-
-	// Tạo một team ngẫu nhiên cho NPC
-	void taoNgauNhien();
-
-	// Reset dữ liệu team
-	void xoa();
+	// Lựa chọn thành viên cho đội (phương thức tạo tuỳ vào loại đội Human hay NPC)
+	virtual void luaChonThanhVien() = 0;
 
 	// Cho team bắt đầu đấu với team khác
-	result_t batDauDauVoi(Team&);
+	result_t batDauDauVoi(Team*);
 
 	virtual ~Team();
 };
 
+class TeamNPC : public Team
+{
+public:
+	void luaChonThanhVien() override;
+};
+
+class TeamHuman : public Team
+{
+public:
+	void luaChonThanhVien() override;
+};
+
 // Em đặt 2 biến Team toàn cục để dễ chia nhỏ chương trình thành nhiều module khác nhau
-extern Team glTeam1;
-extern Team glTeam2;
+extern Team* glTeam1;
+extern Team* glTeam2;
 
 

@@ -18,9 +18,9 @@ public:
 	using Hero::Hero;
 
 	attribute_t thuocTinh() const override;
-	result_t batDauDanh(Hero&) override;
+	result_t batDauDanh(Hero*) override;
 	void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	void capNhtThgSoTrongTeam(Hero&) override;
+	void capNhtThgSoTrongTeam(Hero*) override;
 };
 
 class HeroWood : public Hero 
@@ -28,9 +28,9 @@ class HeroWood : public Hero
 public:
 	using Hero::Hero;
 	attribute_t thuocTinh() const override;
-	result_t batDauDanh(Hero&) override;
+	result_t batDauDanh(Hero*) override;
 	void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	void capNhtThgSoTrongTeam(Hero&) override;
+	void capNhtThgSoTrongTeam(Hero*) override;
 };
 
 class HeroWater : public Hero 
@@ -38,9 +38,9 @@ class HeroWater : public Hero
 public:
 	using Hero::Hero;
 	attribute_t thuocTinh() const override;
-	result_t batDauDanh(Hero&) override;
+	result_t batDauDanh(Hero*) override;
 	void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	void capNhtThgSoTrongTeam(Hero&) override;
+	void capNhtThgSoTrongTeam(Hero*) override;
 };
 
 class HeroFire : public Hero 
@@ -48,9 +48,9 @@ class HeroFire : public Hero
 public:
 	using Hero::Hero;
 	attribute_t thuocTinh() const override;
-	result_t batDauDanh(Hero&) override;
+	result_t batDauDanh(Hero*) override;
 	void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	void capNhtThgSoTrongTeam(Hero&) override;
+	void capNhtThgSoTrongTeam(Hero*) override;
 };
 
 class HeroEarth : public Hero 
@@ -58,8 +58,8 @@ class HeroEarth : public Hero
 public:
 	using Hero::Hero;
 	attribute_t thuocTinh() const override;
-	result_t batDauDanh(Hero&) override;
+	result_t batDauDanh(Hero*) override;
 	void capNhtThgSoTheoMoiTrg(attribute_t) override;
-	void capNhtThgSoTrongTeam(Hero&) override;
+	void capNhtThgSoTrongTeam(Hero*) override;
 };
 

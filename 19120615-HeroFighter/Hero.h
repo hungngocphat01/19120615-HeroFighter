@@ -46,7 +46,7 @@ protected:
 
 	// Cho hero này tấn công hero kia
 	// Hàm này không thể được gọi bừa bãi mà chỉ có thể được gọi từ hàm public batDauDanh
-	void TanCong(Hero&);
+	void TanCong(Hero*);
 
 	float fThGianCho = 0; // thời gian chờ còn lại khi đánh
 
@@ -79,12 +79,12 @@ public:
 	// Bắt đầu một trận đấu cho hero này với 1 hero khác, trả về kết quả (THUA, THANG, HUE)
 	// Khi bắt đầu đánh sẽ tiến hành xét hệ của đối phương để thực hiện trừ điểm, nên hàm này có phụ thuộc
 	// vào ngũ hệ, nên nó là hàm ảo.
-	virtual result_t batDauDanh(Hero&);
+	virtual result_t batDauDanh(Hero*);
 
 	// Vì mấy hàm dưới đây tên muốn đầy đủ ý nghĩa phải viết dài một tí nên em xin phép viết tắt một số từ
 
 	// Cập nhật lại các thông số khi hero 1 khắc hero 2 (khác đội) trong trận đấu
-	static void capNhtThgSoKhiDoiPhBiKhac(Hero&, Hero&); // cập nhật thông số khi đối phương bị khắc
+	static void capNhtThgSoKhiDoiPhBiKhac(Hero*, Hero*); // cập nhật thông số khi đối phương bị khắc
 
 	// Cập nhật thông số khi bị đồng đội khắc
 	void capNhtThgSoKhiBiDngDoiKhac();
@@ -99,7 +99,7 @@ public:
 	 * Vd như hero this là mộc, hero trong tham số là hoả (mộc sinh hoả) nên điểm của hero tham số
 	 * sẽ tăng lên. Còn nếu hero trong tham số là kim (kim khắc mộc) thì điểm của hero this sẽ bị giảm.
 	*/
-	virtual void capNhtThgSoTrongTeam(Hero&) = 0; // cập nhật thông số trong team
+	virtual void capNhtThgSoTrongTeam(Hero*) = 0; // cập nhật thông số trong team
 
 	// Cập nhật lại các thông số theo môi trường
 	virtual void capNhtThgSoTheoMoiTrg(attribute_t) = 0; // cập nhật thông số theo môi trường

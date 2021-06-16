@@ -44,3 +44,14 @@ inline void stdinBufferClear()
 {
 	cin.ignore(INT_MAX, '\n');
 }
+
+// Hàm giải phóng bộ nhớ (chỉ giải phóng nếu không null)
+template<class T>
+static void mfree(T*& ptr)
+{
+	if (ptr != nullptr)
+	{
+		delete ptr;
+		ptr = nullptr;
+	}
+}
