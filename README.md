@@ -9,24 +9,32 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
 
 # 1. Thông tin chung
 - Mô phỏng game HeroFighter trên console.
+
 - Sinh viên thực hiện: HÙNG NGỌC PHÁT -- 19120615.
+
 - Môi trường phát triển: 
   - Microsoft Visual Studio 2019, 
   - Microsoft Windows 10 21H1.
+  
 - Trình biên dịch: Microsoft Visual C++ Compiler (MSCV).
+
 - Chuẩn ngôn ngữ: MSVC C++14.
+
 - Ngày bắt đầu: 20/05/2021.
+
 - Ngày kết thúc: 13/06/2021.
+
 - Hoàn tất debug: --
-- Số lượng dòng code (báo cáo từ lệnh `cloc`):
+
+- Số lượng comment/code trong cả project:
   ```
   -------------------------------------------------------------------------------
   Language                     files          blank        comment           code
   -------------------------------------------------------------------------------
-  C++                              8            176            154           1001
-  C/C++ Header                     7             75            106            239
+  C++                              8            170            136           1018
+  C/C++ Header                     7             77            115            257
   -------------------------------------------------------------------------------
-  SUM:                            15            251            260           1240
+  SUM:                            15            247            251           1275
   -------------------------------------------------------------------------------
   ```
 
@@ -35,7 +43,10 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
   - Chỉnh sửa danh sách hero và ghi xuống file.
     *Lưu ý: File chỉ được ghi khi kết thúc phiên làm việc bằng menu trong chương trình (nhấn nút X có thể làm file không được ghi).*
   - Ghi và đọc file log (thông tin các trận đấu trong quá khứ).
+  
 - Các chức năng trên hoạt động ổn 100% *với các case em đã test*, miễn là dữ liệu đầu vào được toàn vẹn (không cố ý nhập sai). Có xử lý được các lỗi đơn giản nếu người dùng vô ý nhập sai thông tin.
+
+- Github repository (public sau khi hết deadline nộp bài): [hungngocphat01/19120615-HeroFighter (github.com)](https://github.com/hungngocphat01/19120615-HeroFighter)
 
 # 2. Về quy tắc đặt tên biến
 
@@ -52,10 +63,10 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
   ```c++
   float     fExample;
   int       iExample;
-  char*     strAnotherExample; (or std::string)
+  char*     strAnotherExample; // (or std::string)
   vector<T> arrYetAnotherExample;
   ```
-- Các alias cho các kiểu dữ liệu có sẵn (để cho có thêm một tí xíuu syntax sugar) thì được viết bằng chữ cái viết thường, kèm thêm hậu tố `_t`.<br>
+- Các alias cho các kiểu dữ liệu có sẵn (để cho có thêm một tí xíu syntax sugar) thì được viết bằng chữ cái viết thường, kèm thêm hậu tố `_t`.<br>
   Vd: `attribute_t, result_t, vfuncptr_t, ...`
 - Một số quy tắc khác, vd như tên hàm là entry được gọi từ 1 menu khác luôn bắt đầu bằng `entry`, còn tên hàm bên trong có chứa menu thì bắt đầu bằng `menu`, ...<br>
 
@@ -63,7 +74,7 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
 Ở đây em chỉ liệt kê và ghi vắn tắt công dụng của các module/class được nêu. Cụ thể hơn thì thầy vui lòng đọc comment được ghi ở đầu mỗi module.
 - `class Hero`: lớp trừu tượng biểu diễn các thông tin chung nhất của các hero. Ngoài ra còn chứa các hàm static liên quan tới tạo và quản lý hero.
 - `class HeroFire, HeroMetal, ...`: các lớp cụ thể cho từng hệ hero. (IS-A Hero).
-- `class Team`: lớp để quản lí một đội chơi (HAS-A Hero).
+- `class Team`: lớp để quản lí một đội chơi.
 - `class LogEntry, class Logger`: các lớp phát sinh thêm để đọc/ghi và format log.
 - `class Menu`: một thư viện menu tự chế với khả năng tuỳ biến cao, sử dụng lambda expression và con trỏ hàm thay vì 1 dãy các `if`-`else` như truyền thống.
 - `class MatchManager`: tập hợp các hàm static liên quan tới tạo trận đấu.
@@ -74,3 +85,13 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
 </div>
 # 4. Build và chạy
 - Import project vào Visual Studio và build như bình thường.
+
+- Một số hình ảnh khi chạy:
+
+![image-20210617203421537](./demos/image-20210617203421537.png)
+
+![image-20210617203432300](./demos/image-20210617203432300.png)
+
+![image-20210617203544668](./demos/image-20210617203544668.png)
+
+![image-20210617203551575](./demos/image-20210617203551575.png)
