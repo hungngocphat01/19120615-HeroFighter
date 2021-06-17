@@ -41,9 +41,8 @@ public:
 
 	// Hiển thị một menu, lặp mãi mãi đến khi user chọn thoát.
 	// Nếu có exception thì throw về menu trước, đến main menu thì throw ra hàm main.
-	// Tham số đầu: phần code custom cần chạy trước khi hiển thị menu dưới dạng.
+	// Tham số: phần code custom cần chạy trước khi hiển thị menu dưới dạng.
 	//              con trỏ hàm hoặc lambda expression (mặc định là không có).
-	// Tham số sau: có cần clear screen hay không (mặc định là có).
 	void hienThi(vfuncptr_t custom = nullptr);
 
 	// In ra header của menu

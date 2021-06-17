@@ -1,4 +1,4 @@
-#include "Menu.h"
+﻿#include "Menu.h"
 
 void printLine()
 {
@@ -35,7 +35,7 @@ void Menu::hienThi(vfuncptr_t customfunc)
 				customfunc();
 			}
 
-			// In ra c�c arrEntries
+			// In ra các lựa chọn trong menu
 			for (unsigned i = 0; i < arrEntries.size(); i++) 
 			{
 				cout << i + 1 << ". " << arrEntries[i] << "." << endl;
@@ -52,6 +52,7 @@ void Menu::hienThi(vfuncptr_t customfunc)
 				break;
 			}
 
+			// Gọi hàm (con trỏ hàm) được lưu tương ứng với entry đó
 			vfuncptr_t action = arrActions[choice - 1];
 			action();
 

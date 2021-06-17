@@ -66,7 +66,8 @@ void Logger::commit()
 
 	if (fout.fail())
 	{
-		throw runtime_error("Khong the mo log file de ghi");
+		cout << "\nCanh bao: Khong the mo log file de ghi ket qua" << endl;
+		return;
 	}
 
 	fout << logbuffer.to_string() << endl;
@@ -80,7 +81,7 @@ void Logger::entryHienThiLog()
 	ifstream fin = ifstream(strLogFileName);
 	if (fin.fail())
 	{
-		throw runtime_error("Ten file log khong hop le");
+		throw runtime_error("Ten file log khong hop le.");
 	}
 	vector<LogEntry> readEntries;
 	while (!fin.eof())
@@ -132,14 +133,12 @@ void LogEntry::print()
 	for (string s : arrLucLuongTeam1)
 	{
 		cout << s << endl;
-
 	}
 	cout << "\nTeam 2: " << strTen2 << endl;
 	cout << "Ten;He;Mau;Cong;Thu;T.do" << endl;
 	for (string s : arrLucLuongTeam2)
 	{
 		cout << s << endl;
-
 	}
 	cout << endl;
 	if (iNguoiThangCuoc == 0)

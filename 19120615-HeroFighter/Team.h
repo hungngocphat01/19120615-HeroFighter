@@ -1,12 +1,11 @@
 ﻿#pragma once
-#include "HerowAttribute.h"
-#include "Menu.h"
 #include <vector>
 #include <iostream>
 #include <iomanip>
 #include <ctime>
 #include <random>
-
+#include "HerowAttribute.h"
+#include "Menu.h"
 /*
 * Đây là class để quản lý các đội chơi
 */
@@ -47,6 +46,8 @@ public:
 	virtual ~Team();
 };
 
+// Do team khi đấu với user và team khi đấu với npc khác nhau ở chỗ chọn thành viên nên em tách ra làm 2 class con
+
 class TeamNPC : public Team
 {
 public:
@@ -60,6 +61,8 @@ public:
 };
 
 // Em đặt 2 biến Team toàn cục để dễ chia nhỏ chương trình thành nhiều module khác nhau
+// Xuyên suốt chương trình, 2 con trỏ này sẽ luôn được giải phóng trước khi cấp phát lại 
+// (double check) nên khó xảy ra tình trạng rò rỉ bộ nhớ.
 extern Team* glTeam1;
 extern Team* glTeam2;
 

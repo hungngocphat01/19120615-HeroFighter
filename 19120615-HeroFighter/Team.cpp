@@ -89,7 +89,7 @@ void TeamHuman::luaChonThanhVien()
 		{
 			cout << i + 1 << ". " << Hero::arrDanhSachHero.at(i) << endl;
 		}
-		cout << "Hay nhap 3 con so lien tiep (cach nhau boi 01 dau cach) de chon dong doi cho minh!" << endl;
+		cout << "Hay nhap 3 con so lien tiep (cach nhau boi 01 dau cach) de chon dong doi cho " << strTenDoiChoi << "!" << endl;
 		cout << "Nhap: ";
 
 		int x, y, z;
@@ -179,6 +179,13 @@ void Hero::menuQuanLyHero()
 
 		string s;
 		getline(cin, s);
+		if (s.size() <= 10)
+		{
+			cout << "Khong du thong tin, hay nhap lai." << endl;
+			system("pause");
+			// Thoát khỏi anonymous function này chứ ko thoát khỏi hàm bên ngoài
+			return;
+		}
 		Hero::arrDanhSachHero.push_back(s);
 
 		cout << "Da them hero vao danh sach." << endl;
@@ -192,10 +199,9 @@ void Hero::menuQuanLyHero()
 		cin >> i;
 		stdinBufferClear();
 
-		if (i >= Hero::arrDanhSachHero.size() || i <= 0) {
+		if (i > Hero::arrDanhSachHero.size() || i <= 0) {
 			cout << "Ban da nhap mot so khong hop le!" << endl;
 			system("pause");
-			// Thoát khỏi anonymous function này chứ ko thoát khỏi hàm bên ngoài
 			return;
 		}
 
@@ -224,7 +230,7 @@ void Hero::menuQuanLyHero()
 		cin >> i;
 		stdinBufferClear();
 
-		if (i >= Hero::arrDanhSachHero.size() || i <= 0) {
+		if (i > Hero::arrDanhSachHero.size() || i <= 0) {
 			cout << "Ban da nhap mot so khong hop le!" << endl;
 			system("pause");
 			return;
@@ -237,6 +243,12 @@ void Hero::menuQuanLyHero()
 		cout << "Nhap: ";
 		string s;
 		getline(cin, s);
+		if (s.size() <= 10)
+		{
+			cout << "Khong du thong tin, hay nhap lai." << endl;
+			system("pause");
+			return;
+		}
 
 		cout << "\nBan co chac chan muon sua hero sau\n" << Hero::arrDanhSachHero[--i] << "?" << endl;
 		cout << "Nhap [y/n]: ";

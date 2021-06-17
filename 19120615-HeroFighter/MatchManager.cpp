@@ -2,6 +2,7 @@
 
 constexpr int HeSoDonViThoiGian = 600;
 
+// Interface để giao tiếp, tạo trận đấu
 void MatchManager::menuTaoTranDau()
 {
 	Menu menu = Menu("Bat dau tran dau");
@@ -24,6 +25,8 @@ void MatchManager::menuTaoTranDau()
 		throw e;
 	}
 }
+
+// Hàm xử lý các đoạn code riêng cho trận đấu với user
 void MatchManager::entryDauVoiUser()
 {
 	Menu menu = Menu("Dau voi user!");
@@ -63,6 +66,7 @@ void MatchManager::entryDauVoiUser()
 		throw e;
 	}
 }
+// Hàm xử lý các đoạn code riêng cho trận đấu với NPC
 void MatchManager::entryDauVoiNPC()
 {
 	Menu menu = Menu("Dau voi NPC");
@@ -97,6 +101,8 @@ void MatchManager::entryDauVoiNPC()
 		throw e;
 	}
 }
+
+// Hàm xử lý các đoạn code chung cho tạo trận đấu
 void MatchManager::batDauTranDau()
 {
 	try
@@ -107,7 +113,7 @@ void MatchManager::batDauTranDau()
 		Logger::ghiLucLuong(1, glTeam1);
 		Logger::ghiLucLuong(2, glTeam2);
 
-		Menu menu("Bat dau tran dau");
+		Menu menu("Tran dau: " + glTeam1->strTenDoiChoi + " vs. " + glTeam2->strTenDoiChoi + "!");
 		menu.hienthiHeader();
 
 		attribute_t moitruong = glBangTraThuocTinh[rand() % 5];
