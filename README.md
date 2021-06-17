@@ -30,7 +30,15 @@ LỚP 19_1, HỌC KỲ 2 NĂM HỌC 2020 - 2021
   -------------------------------------------------------------------------------
   ```
 
+- Các chức năng chính:
+  - Tạo trận đấu: đấu với NPC, đấu với user. Chọn hero từ danh sách. Hiển thị kết quả sau trận đấu.
+  - Chỉnh sửa danh sách hero và ghi xuống file.
+    *Lưu ý: File chỉ được ghi khi kết thúc phiên làm việc bằng menu trong chương trình (nhấn nút X có thể làm file không được ghi).*
+  - Ghi và đọc file log (thông tin các trận đấu trong quá khứ).
+- Các chức năng trên hoạt động ổn 100% *với các case em đã test*, miễn là dữ liệu đầu vào được toàn vẹn (không cố ý nhập sai). Có xử lý được các lỗi đơn giản nếu người dùng vô ý nhập sai thông tin.
+
 # 2. Về quy tắc đặt tên biến
+
 - Hầu hết tên biến đều được đặt bằng tiếng Việt, đôi khi sẽ phải viết tắt để tiết kiệm không gian.<br>
   Một số vị trí mà dùng tiếng Việt không được phù hợp lắm thì em xin phép được ghi tiếng Anh.
 - Tất cả các biến toàn cục được đặt theo camelCase nhưng có thêm tiền tố `gl~` (global). <br>Vd: `glExample`.
