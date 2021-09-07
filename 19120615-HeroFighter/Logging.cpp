@@ -6,16 +6,13 @@ LogEntry Logger::logbuffer;
 void Logger::ghiThoiGian()
 {
 	time_t t = time(0);
-	tm* now = new tm;
-	localtime_s(now, &t);
+	tm* now = localtime(&t);
 
 	logbuffer.iday = now->tm_mday;
 	logbuffer.imonth = now->tm_mon + 1;
 	logbuffer.iyear = now->tm_year + 1900;
 	logbuffer.ihour = now->tm_hour;
 	logbuffer.iminute = now->tm_min;
-
-	delete now;
 }
 
 // Ghi tên đội chơi ra log
@@ -120,13 +117,17 @@ void Logger::entryHienThiLog()
 		cout << "Khong tim thay log vao ngay da nhap." << endl;
 	}
 
-	system("pause");
+	pauseProgram();
 }
 
 void LogEntry::print()
 {
 	cout << "\nThoi gian: ";
+	#ifdef _MSC_VER
 	printf_s("%d/%d/%d %d:%d\n", iday, imonth, iyear, ihour, iminute);
+	#else
+	printf("%d/%d/%d %d:%d\n", iday, imonth, iyear, ihour, iminute);
+	#endif
 
 	cout << "Team 1: " << strTen1 << endl;
 	cout << "Ten;He;Mau;Cong;Thu;T.do" << endl;

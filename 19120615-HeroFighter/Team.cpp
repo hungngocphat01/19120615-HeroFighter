@@ -100,7 +100,7 @@ void TeamHuman::luaChonThanhVien()
 		{
 			cout << "Ban da nhap mot so khong hop le. Vui long kiem tra lai!" << endl;
 			valid = false;
-			system("pause");
+			pauseProgram();
 		}
 		else {
 			valid = true;
@@ -149,7 +149,7 @@ result_t Team::batDauDauVoi(Team* doithu)
 		}
 	}
 
-	system("pause");
+	pauseProgram();
 
 	if (thangCount == thuaCount)
 	{
@@ -182,14 +182,14 @@ void Hero::menuQuanLyHero()
 		if (s.size() <= 10)
 		{
 			cout << "Khong du thong tin, hay nhap lai." << endl;
-			system("pause");
+			pauseProgram();
 			// Thoát khỏi anonymous function này chứ ko thoát khỏi hàm bên ngoài
 			return;
 		}
 		Hero::arrDanhSachHero.push_back(s);
 
 		cout << "Da them hero vao danh sach." << endl;
-		system("pause");
+		pauseProgram();
 	});
 
 	menu.themEntryMoi("Xoa hero", []() {
@@ -201,7 +201,7 @@ void Hero::menuQuanLyHero()
 
 		if (i > Hero::arrDanhSachHero.size() || i <= 0) {
 			cout << "Ban da nhap mot so khong hop le!" << endl;
-			system("pause");
+			pauseProgram();
 			return;
 		}
 
@@ -220,7 +220,7 @@ void Hero::menuQuanLyHero()
 		else {
 			cout << "Yeu cau da duoc huy." << endl;
 		}
-		system("pause");
+		pauseProgram();
 	});
 
 	menu.themEntryMoi("Sua hero", []() {
@@ -232,7 +232,7 @@ void Hero::menuQuanLyHero()
 
 		if (i > Hero::arrDanhSachHero.size() || i <= 0) {
 			cout << "Ban da nhap mot so khong hop le!" << endl;
-			system("pause");
+			pauseProgram();
 			return;
 		}
 
@@ -246,7 +246,7 @@ void Hero::menuQuanLyHero()
 		if (s.size() <= 10)
 		{
 			cout << "Khong du thong tin, hay nhap lai." << endl;
-			system("pause");
+			pauseProgram();
 			return;
 		}
 
@@ -262,7 +262,7 @@ void Hero::menuQuanLyHero()
 		else {
 			cout << "Yeu cau da duoc huy." << endl;
 		}
-		system("pause");
+		pauseProgram();
 	});
 
 	menu.hienThi([]() {

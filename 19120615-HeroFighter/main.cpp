@@ -15,7 +15,7 @@ int main()
 	mainmenu.hienthiHeader();
 	cout << "Hay nhap ten cho nguoi choi 1: ";
 	getline(cin, glUsername);
-	system("cls");
+	clearScreen();
 	
 	// Thêm các trường cho menu chính
 	mainmenu.themEntryMoi("Xem log", Logger::entryHienThiLog);
@@ -38,7 +38,7 @@ int main()
 		cout << "Vui long kiem tra lai file input (ListHero.txt) xem thu co gi bat thuong khong truoc khi report cho nha phat trien." << endl;
 	}
 
-	system("pause");
+	pauseProgram();
 
 	// Nếu danh sách hero đã bị thay đổi thì ghi thay đổi đó xuống file (ghi đè toàn bộ danh sách)
 	if (glFlagDSHeroThayDoi) 

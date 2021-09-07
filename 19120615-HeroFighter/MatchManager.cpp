@@ -53,7 +53,7 @@ void MatchManager::entryDauVoiUser()
 		if (glThoiGianTranDau != 1 && glThoiGianTranDau != 2 && glThoiGianTranDau != 5)
 		{
 			cout << "Ban dau chon sai! Chuong trinh se thoat ra menu chinh." << endl;
-			system("pause");
+			pauseProgram();
 			return;
 		}
 		glThoiGianTranDau *= HeSoDonViThoiGian; // đổi ra đơn vị thời gian tự chọn
@@ -89,7 +89,7 @@ void MatchManager::entryDauVoiNPC()
 		// Mặc định: thời gian là 1 phút
 		glThoiGianTranDau = 1 * HeSoDonViThoiGian;
 
-		system("cls");
+		clearScreen();
 		menu.hienthiHeader();
 
 		// Bắt đầu đấu
@@ -128,19 +128,19 @@ void MatchManager::batDauTranDau()
 		cout << endl;
 		glTeam2->hienThiLucLuong();
 		cout << endl;
-		system("pause");
+		pauseProgram();
 
 		if (glTeam1->soLuongThanhVien() < 3 || glTeam2->soLuongThanhVien() < 3)
 		{
 			throw length_error("So luong thanh vien cua mot trong 2 doi khong du. Day la loi chuong trinh, hay lien he nha phat trien.");
 		}
 
-		system("cls");
+		clearScreen();
 		menu.hienthiHeader();
 
 		result_t kq = glTeam1->batDauDauVoi(glTeam2);
 
-		system("cls");
+		clearScreen();
 		menu.hienthiHeader();
 		if (kq == THANG)
 		{
@@ -174,7 +174,7 @@ void MatchManager::batDauTranDau()
 		}
 		mfree(glTeam1);
 		mfree(glTeam2);
-		system("pause");
+		pauseProgram();
 	}
 	catch (exception& e)
 	{

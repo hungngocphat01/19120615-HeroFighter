@@ -71,7 +71,7 @@ void Menu::hienthiHeader()
 {
 	if (blXoaManHinh)
 	{
-		system("cls");
+		clearScreen();
 	}
 	cout << strHeader << endl;
 	printLine();

@@ -6,6 +6,7 @@
 #include <random>
 #include "HerowAttribute.h"
 #include "Menu.h"
+#include "Utils.h"
 /*
 * Đây là class để quản lý các đội chơi
 */

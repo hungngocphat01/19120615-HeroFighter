@@ -3,6 +3,7 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+#include <climits>
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -54,4 +55,24 @@ static void mfree(T*& ptr)
 		delete ptr;
 		ptr = nullptr;
 	}
+}
+
+// Hàm tạm dừng chương trình
+static void pauseProgram() {
+	#ifdef WIN32
+	system("pause");
+	#else 
+	cout << "Press ENTER to continue..." << endl;
+	cin.get();
+	cin.clear();
+	#endif
+}
+
+// Hàm xóa màn hình 
+static void clearScreen() {
+	#ifdef WIN32
+	system("cls");
+	#else 
+	system("clear");
+	#endif	
 }
