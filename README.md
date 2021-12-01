@@ -1,5 +1,6 @@
 <!--GITHUB LINK: https://github.com/hungngocphat01/19120615-HeroFighter-->
 <!--Private repo, em sẽ public sau khi thầy khoá deadline-->
+Update vài tháng sau: đồ án này được 10 điểm :>
 
 <div align="center">
 <h2>ĐỒ ÁN CUỐI KỲ</h2>
